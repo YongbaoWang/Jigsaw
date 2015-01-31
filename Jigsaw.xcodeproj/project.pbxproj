@@ -19,6 +19,12 @@
 		1D17EEA01A7CD6E400C3D8C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D17EE881A7CD6E300C3D8C7 /* UIKit.framework */; };
 		1D17EEA81A7CD6E400C3D8C7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EEA61A7CD6E400C3D8C7 /* InfoPlist.strings */; };
 		1D17EEAA1A7CD6E400C3D8C7 /* JigsawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D17EEA91A7CD6E400C3D8C7 /* JigsawTests.m */; };
+		1D17EEBF1A7CD82900C3D8C7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D17EEBD1A7CD82900C3D8C7 /* MainViewController.m */; };
+		1D17EEC01A7CD82900C3D8C7 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EEBE1A7CD82900C3D8C7 /* MainViewController.xib */; };
+		1D17EEC71A7CD8B900C3D8C7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D17EEC51A7CD8B900C3D8C7 /* GameViewController.m */; };
+		1D17EEC81A7CD8B900C3D8C7 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EEC61A7CD8B900C3D8C7 /* GameViewController.xib */; };
+		1D17EECF1A7CD8DD00C3D8C7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */; };
+		1D17EED01A7CD8DD00C3D8C7 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +54,15 @@
 		1D17EEA51A7CD6E400C3D8C7 /* JigsawTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JigsawTests-Info.plist"; sourceTree = "<group>"; };
 		1D17EEA71A7CD6E400C3D8C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1D17EEA91A7CD6E400C3D8C7 /* JigsawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JigsawTests.m; sourceTree = "<group>"; };
+		1D17EEBC1A7CD82900C3D8C7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		1D17EEBD1A7CD82900C3D8C7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		1D17EEBE1A7CD82900C3D8C7 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		1D17EEC41A7CD8B900C3D8C7 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		1D17EEC51A7CD8B900C3D8C7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		1D17EEC61A7CD8B900C3D8C7 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		1D17EECC1A7CD8DD00C3D8C7 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +122,9 @@
 		1D17EE8A1A7CD6E300C3D8C7 /* Jigsaw */ = {
 			isa = PBXGroup;
 			children = (
-				1D17EE931A7CD6E300C3D8C7 /* AppDelegate.h */,
-				1D17EE941A7CD6E300C3D8C7 /* AppDelegate.m */,
-				1D17EE961A7CD6E300C3D8C7 /* Images.xcassets */,
+				1D17EEB31A7CD6F700C3D8C7 /* AppDelegate */,
+				1D17EEB41A7CD70800C3D8C7 /* Sections */,
+				1D17EEB51A7CD71A00C3D8C7 /* Generals */,
 				1D17EE8B1A7CD6E300C3D8C7 /* Supporting Files */,
 			);
 			path = Jigsaw;
@@ -118,6 +133,7 @@
 		1D17EE8B1A7CD6E300C3D8C7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1D17EE961A7CD6E300C3D8C7 /* Images.xcassets */,
 				1D17EE8C1A7CD6E300C3D8C7 /* Jigsaw-Info.plist */,
 				1D17EE8D1A7CD6E300C3D8C7 /* InfoPlist.strings */,
 				1D17EE901A7CD6E300C3D8C7 /* main.m */,
@@ -142,6 +158,86 @@
 				1D17EEA61A7CD6E400C3D8C7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1D17EEB31A7CD6F700C3D8C7 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				1D17EE931A7CD6E300C3D8C7 /* AppDelegate.h */,
+				1D17EE941A7CD6E300C3D8C7 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		1D17EEB41A7CD70800C3D8C7 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				1D17EEBB1A7CD7E500C3D8C7 /* Setting */,
+				1D17EEBA1A7CD79500C3D8C7 /* Gameboard */,
+				1D17EEB91A7CD77D00C3D8C7 /* Main */,
+			);
+			name = Sections;
+			sourceTree = "<group>";
+		};
+		1D17EEB51A7CD71A00C3D8C7 /* Generals */ = {
+			isa = PBXGroup;
+			children = (
+				1D17EEB81A7CD77100C3D8C7 /* Views */,
+				1D17EEB71A7CD76A00C3D8C7 /* Classes */,
+				1D17EEB61A7CD75A00C3D8C7 /* Categories */,
+			);
+			name = Generals;
+			sourceTree = "<group>";
+		};
+		1D17EEB61A7CD75A00C3D8C7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		1D17EEB71A7CD76A00C3D8C7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1D17EEB81A7CD77100C3D8C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1D17EEB91A7CD77D00C3D8C7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1D17EEBC1A7CD82900C3D8C7 /* MainViewController.h */,
+				1D17EEBD1A7CD82900C3D8C7 /* MainViewController.m */,
+				1D17EEBE1A7CD82900C3D8C7 /* MainViewController.xib */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		1D17EEBA1A7CD79500C3D8C7 /* Gameboard */ = {
+			isa = PBXGroup;
+			children = (
+				1D17EEC41A7CD8B900C3D8C7 /* GameViewController.h */,
+				1D17EEC51A7CD8B900C3D8C7 /* GameViewController.m */,
+				1D17EEC61A7CD8B900C3D8C7 /* GameViewController.xib */,
+			);
+			name = Gameboard;
+			sourceTree = "<group>";
+		};
+		1D17EEBB1A7CD7E500C3D8C7 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				1D17EECC1A7CD8DD00C3D8C7 /* SettingViewController.h */,
+				1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */,
+				1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */,
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +315,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D17EEC81A7CD8B900C3D8C7 /* GameViewController.xib in Resources */,
+				1D17EED01A7CD8DD00C3D8C7 /* SettingViewController.xib in Resources */,
 				1D17EE8F1A7CD6E300C3D8C7 /* InfoPlist.strings in Resources */,
+				1D17EEC01A7CD82900C3D8C7 /* MainViewController.xib in Resources */,
 				1D17EE971A7CD6E300C3D8C7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,8 +338,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D17EEC71A7CD8B900C3D8C7 /* GameViewController.m in Sources */,
 				1D17EE951A7CD6E300C3D8C7 /* AppDelegate.m in Sources */,
+				1D17EEBF1A7CD82900C3D8C7 /* MainViewController.m in Sources */,
 				1D17EE911A7CD6E300C3D8C7 /* main.m in Sources */,
+				1D17EECF1A7CD8DD00C3D8C7 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
