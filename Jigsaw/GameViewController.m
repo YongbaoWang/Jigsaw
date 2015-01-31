@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+#import "UIView+CaptureView.h"
 
 @interface GameViewController ()
 
@@ -27,6 +28,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self initView];
+}
+
+-(void)initView
+{
+    [self.view setBackgroundColor:[UIColor yellowColor]];
+    UIImageView *imageView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"a.png"]];
+    [imageView setFrame:CGRectMake(0, 0, 230, 350)];
+    UIImage *image=[imageView captureViewWithFrame:CGRectMake(100, 180, 60, 60)];
+    [imageView setImage:image];
+    [imageView setFrame:CGRectMake(100, 100, 60, 60)];
+    [self.view addSubview:imageView];
 }
 
 - (void)didReceiveMemoryWarning

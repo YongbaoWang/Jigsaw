@@ -25,6 +25,7 @@
 		1D17EEC81A7CD8B900C3D8C7 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EEC61A7CD8B900C3D8C7 /* GameViewController.xib */; };
 		1D17EECF1A7CD8DD00C3D8C7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */; };
 		1D17EED01A7CD8DD00C3D8C7 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */; };
+		1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		1D17EECC1A7CD8DD00C3D8C7 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		1D7A4B8E1A7CE84C0038EFAD /* UIView+CaptureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CaptureView.h"; sourceTree = "<group>"; };
+		1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CaptureView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,8 @@
 		1D17EEB61A7CD75A00C3D8C7 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				1D7A4B8E1A7CE84C0038EFAD /* UIView+CaptureView.h */,
+				1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 			files = (
 				1D17EEC71A7CD8B900C3D8C7 /* GameViewController.m in Sources */,
 				1D17EE951A7CD6E300C3D8C7 /* AppDelegate.m in Sources */,
+				1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */,
 				1D17EEBF1A7CD82900C3D8C7 /* MainViewController.m in Sources */,
 				1D17EE911A7CD6E300C3D8C7 /* main.m in Sources */,
 				1D17EECF1A7CD8DD00C3D8C7 /* SettingViewController.m in Sources */,
@@ -539,6 +545,7 @@
 				1D17EEAF1A7CD6E400C3D8C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D17EEB01A7CD6E400C3D8C7 /* Build configuration list for PBXNativeTarget "JigsawTests" */ = {
 			isa = XCConfigurationList;
@@ -547,6 +554,7 @@
 				1D17EEB21A7CD6E400C3D8C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
