@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D11EDD51A7F2E7100425575 /* PicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EDD41A7F2E7100425575 /* PicTableViewCell.m */; };
+		1D11EDDB1A7F8E6800425575 /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EDDA1A7F8E6800425575 /* GameView.m */; };
 		1D17EE851A7CD6E300C3D8C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D17EE841A7CD6E300C3D8C7 /* Foundation.framework */; };
 		1D17EE871A7CD6E300C3D8C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D17EE861A7CD6E300C3D8C7 /* CoreGraphics.framework */; };
 		1D17EE891A7CD6E300C3D8C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D17EE881A7CD6E300C3D8C7 /* UIKit.framework */; };
@@ -39,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D11EDD31A7F2E7100425575 /* PicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicTableViewCell.h; sourceTree = "<group>"; };
+		1D11EDD41A7F2E7100425575 /* PicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicTableViewCell.m; sourceTree = "<group>"; };
+		1D11EDD71A7F2FB300425575 /* ViewMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMacro.h; sourceTree = "<group>"; };
+		1D11EDD81A7F2FC600425575 /* AppMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
+		1D11EDD91A7F8E6800425575 /* GameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameView.h; sourceTree = "<group>"; };
+		1D11EDDA1A7F8E6800425575 /* GameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameView.m; sourceTree = "<group>"; };
 		1D17EE811A7CD6E300C3D8C7 /* Jigsaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jigsaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D17EE841A7CD6E300C3D8C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D17EE861A7CD6E300C3D8C7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D11EDD61A7F2F5F00425575 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				1D11EDD81A7F2FC600425575 /* AppMacro.h */,
+				1D11EDD71A7F2FB300425575 /* ViewMacro.h */,
+			);
+			name = Macro;
+			sourceTree = "<group>";
+		};
 		1D17EE781A7CD6E300C3D8C7 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				1D17EEB31A7CD6F700C3D8C7 /* AppDelegate */,
+				1D11EDD61A7F2F5F00425575 /* Macro */,
 				1D17EEB41A7CD70800C3D8C7 /* Sections */,
 				1D17EEB51A7CD71A00C3D8C7 /* Generals */,
 				1D17EE8B1A7CD6E300C3D8C7 /* Supporting Files */,
@@ -211,6 +229,10 @@
 		1D17EEB81A7CD77100C3D8C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1D11EDD31A7F2E7100425575 /* PicTableViewCell.h */,
+				1D11EDD41A7F2E7100425575 /* PicTableViewCell.m */,
+				1D11EDD91A7F8E6800425575 /* GameView.h */,
+				1D11EDDA1A7F8E6800425575 /* GameView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -345,6 +367,8 @@
 			files = (
 				1D17EEC71A7CD8B900C3D8C7 /* GameViewController.m in Sources */,
 				1D17EE951A7CD6E300C3D8C7 /* AppDelegate.m in Sources */,
+				1D11EDDB1A7F8E6800425575 /* GameView.m in Sources */,
+				1D11EDD51A7F2E7100425575 /* PicTableViewCell.m in Sources */,
 				1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */,
 				1D17EEBF1A7CD82900C3D8C7 /* MainViewController.m in Sources */,
 				1D17EE911A7CD6E300C3D8C7 /* main.m in Sources */,
@@ -422,7 +446,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -454,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -468,6 +492,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jigsaw/Jigsaw-Prefix.pch";
 				INFOPLIST_FILE = "Jigsaw/Jigsaw-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -481,6 +506,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jigsaw/Jigsaw-Prefix.pch";
 				INFOPLIST_FILE = "Jigsaw/Jigsaw-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

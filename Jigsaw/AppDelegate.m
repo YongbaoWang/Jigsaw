@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "GameViewController.h"
+#import "MainViewController.h"
 
 @implementation AppDelegate
 
@@ -15,8 +15,10 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    GameViewController *gameVC=[[GameViewController alloc] init];
-    self.window.rootViewController=gameVC;
+    MainViewController *mainVC=[[MainViewController alloc] init];
+    UINavigationController *nav=[[UINavigationController alloc] initWithRootViewController:mainVC];
+    [nav.navigationBar setHidden:YES];
+    self.window.rootViewController=nav;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    NSMutableArray *_picArrayM;
+}
+
+@property (strong, nonatomic) IBOutlet UITableView *myTableView;
+@property (strong, nonatomic) IBOutlet UIView *toolBg;
+
 
 @end

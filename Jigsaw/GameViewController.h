@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameView.h"
 
 @interface GameViewController : UIViewController
+{
+    GameView *_gameView;
+}
+
+/**
+ *  选中的图片
+ */
+@property(nonatomic,copy)NSString *picName;
 
 @end
