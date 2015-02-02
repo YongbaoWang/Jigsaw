@@ -44,7 +44,7 @@
 {
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_game"]]];
     
-    UIButton *loadBtn=[self createToolBtnWithTitle:@"Load"];
+    UIButton *loadBtn=[self createToolBtnWithTitle:@"Back"];
     UIButton *saveBtn=[self createToolBtnWithTitle:@"Save"];
     UIButton *clearBtn=[self createToolBtnWithTitle:@"Clear"];
     
@@ -94,9 +94,9 @@
     return btn;
 }
 
--(void)loadAction:(UIButton *)sender
+-(void)backAction:(UIButton *)sender
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)saveAction:(UIButton *)sender
