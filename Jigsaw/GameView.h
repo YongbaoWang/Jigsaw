@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^splitBlock)(NSInteger btnTag);
+
 @interface GameView : UIView
 
 /**
  *  准备拼图的图片
  */
 @property(nonatomic,copy)NSString *picName;
+@property(nonatomic,copy)splitBlock splitAction;
 
 @end

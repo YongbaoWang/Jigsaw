@@ -70,6 +70,9 @@
     
     _gameView=[[GameView alloc] init];
     _gameView.picName=self.picName;
+    _gameView.splitAction=^(NSInteger tag){
+        NSLog(@"test:%d",tag);
+    };
     [_gameView setBackgroundColor:color(255, 255, 255, 0.3)];
     [_gameView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:_gameView];
@@ -78,6 +81,11 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_gameView]-15-|" options:0 metrics:0 views:gameViewDict]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[stepsLbl]-25-[_gameView(290)]" options:0 metrics:0 views:gameViewDict]];
     
+}
+
+-(void)splitBtnAction:(NSInteger)tag
+{
+
 }
 
 -(UIButton *)createToolBtnWithTitle:(NSString *)title
@@ -108,24 +116,5 @@
 {
     
 }
-
-//-(void)splitImageInBg:(UIView*)bgView
-//{
-//    UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 290, 290)];
-//    [imageView setImage:[UIImage imageNamed:self.picName]];
-// 
-//    CGRect rect=bgView.frame;
-//    NSInteger btnWidth=rect.size.width/3;
-//    NSInteger btnHeight=rect.size.height/3;
-//    for (int i=0; i<3; i++) {
-//        for (int j=0; j<3; j++) {
-//            CGRect btnRect=CGRectMake(btnWidth*j, btnHeight *i, btnWidth, btnHeight);
-//            UIButton *btn=[[UIButton alloc] initWithFrame:btnRect];
-//            [btn setImage:[imageView captureViewWithFrame:btnRect] forState:UIControlStateNormal];
-//            [btn setTitle:[NSString stringWithFormat:@"%d",i*3+(j+1)] forState:UIControlStateNormal];
-//            [bgView addSubview:btn];
-//        }
-//    }
-//}
 
 @end
