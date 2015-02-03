@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18DC87E41A7FD0E9004E1C45 /* SplitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC87E31A7FD0E9004E1C45 /* SplitButton.m */; };
 		18DC87E71A7FD555004E1C45 /* SplitLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC87E61A7FD555004E1C45 /* SplitLabel.m */; };
 		1D11EDD51A7F2E7100425575 /* PicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EDD41A7F2E7100425575 /* PicTableViewCell.m */; };
 		1D11EDDB1A7F8E6800425575 /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EDDA1A7F8E6800425575 /* GameView.m */; };
@@ -29,6 +28,7 @@
 		1D17EEC81A7CD8B900C3D8C7 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EEC61A7CD8B900C3D8C7 /* GameViewController.xib */; };
 		1D17EECF1A7CD8DD00C3D8C7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */; };
 		1D17EED01A7CD8DD00C3D8C7 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */; };
+		1D5248DB1A80704D0074F6D4 /* SplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5248DA1A80704D0074F6D4 /* SplitView.m */; };
 		1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */; };
 /* End PBXBuildFile section */
 
@@ -43,8 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18DC87E21A7FD0E9004E1C45 /* SplitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitButton.h; sourceTree = "<group>"; };
-		18DC87E31A7FD0E9004E1C45 /* SplitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitButton.m; sourceTree = "<group>"; };
 		18DC87E51A7FD555004E1C45 /* SplitLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitLabel.h; sourceTree = "<group>"; };
 		18DC87E61A7FD555004E1C45 /* SplitLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitLabel.m; sourceTree = "<group>"; };
 		1D11EDD31A7F2E7100425575 /* PicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicTableViewCell.h; sourceTree = "<group>"; };
@@ -78,6 +76,8 @@
 		1D17EECC1A7CD8DD00C3D8C7 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		1D5248D91A80704D0074F6D4 /* SplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitView.h; sourceTree = "<group>"; };
+		1D5248DA1A80704D0074F6D4 /* SplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitView.m; sourceTree = "<group>"; };
 		1D7A4B8E1A7CE84C0038EFAD /* UIView+CaptureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CaptureView.h"; sourceTree = "<group>"; };
 		1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CaptureView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,10 +228,10 @@
 		1D17EEB71A7CD76A00C3D8C7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				18DC87E21A7FD0E9004E1C45 /* SplitButton.h */,
-				18DC87E31A7FD0E9004E1C45 /* SplitButton.m */,
 				18DC87E51A7FD555004E1C45 /* SplitLabel.h */,
 				18DC87E61A7FD555004E1C45 /* SplitLabel.m */,
+				1D5248D91A80704D0074F6D4 /* SplitView.h */,
+				1D5248DA1A80704D0074F6D4 /* SplitView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -378,10 +378,10 @@
 				1D17EEC71A7CD8B900C3D8C7 /* GameViewController.m in Sources */,
 				1D17EE951A7CD6E300C3D8C7 /* AppDelegate.m in Sources */,
 				1D11EDDB1A7F8E6800425575 /* GameView.m in Sources */,
+				1D5248DB1A80704D0074F6D4 /* SplitView.m in Sources */,
 				18DC87E71A7FD555004E1C45 /* SplitLabel.m in Sources */,
 				1D11EDD51A7F2E7100425575 /* PicTableViewCell.m in Sources */,
 				1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */,
-				18DC87E41A7FD0E9004E1C45 /* SplitButton.m in Sources */,
 				1D17EEBF1A7CD82900C3D8C7 /* MainViewController.m in Sources */,
 				1D17EE911A7CD6E300C3D8C7 /* main.m in Sources */,
 				1D17EECF1A7CD8DD00C3D8C7 /* SettingViewController.m in Sources */,

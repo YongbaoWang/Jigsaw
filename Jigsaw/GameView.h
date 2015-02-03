@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^splitBlock)(NSInteger btnTag);
+typedef void(^splitBlock)(UIButton *sender);
 
 @interface GameView : UIView
 
@@ -17,5 +17,7 @@ typedef void(^splitBlock)(NSInteger btnTag);
  */
 @property(nonatomic,copy)NSString *picName;
 @property(nonatomic,copy)splitBlock splitAction;
+@property(nonatomic,strong)NSMutableArray *splitViewArrayM;
+@property(nonatomic,assign)CGRect blankRect ;
 
 @end

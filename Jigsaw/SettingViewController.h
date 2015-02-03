@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    kGameEasy,
+    kGameMedium,
+    kGameHard,
+} GameLevel;
+
 @interface SettingViewController : UIViewController
 
 @end

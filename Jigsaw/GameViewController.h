@@ -8,10 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "GameView.h"
+#import "SettingViewController.h"
+
+typedef enum : NSUInteger {
+    kGameNormal,
+    kGamePlaying,
+    kGameEnd,
+    kGameReset
+} GameState;
 
 @interface GameViewController : UIViewController
 {
-    GameView *_gameView;
+    GameView *_gameView;//游戏面板
+    GameState _gameState;//游戏状态
+    CGRect _blankRect; //空格所在位置
+    NSInteger _blankNum; //空格标号
+    GameLevel _gameLevel;//当前游戏难度
+    NSInteger _stepsCount; //游戏所用步数
+    UILabel *_stepsLbl;
 }
 
 /**

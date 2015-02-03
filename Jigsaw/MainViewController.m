@@ -10,7 +10,6 @@
 #import "ViewMacro.h"
 #import "PicTableViewCell.h"
 #import "GameViewController.h"
-#import "AppMacro.h"
 
 @interface MainViewController ()
 
@@ -48,7 +47,6 @@
     }
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]];
     [self.toolBg setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]];
-//    [_myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     _picArrayM=[[NSMutableArray alloc] initWithObjects:@"a",@"b",@"c",@"d",@"e", nil];
     UILabel *label=[[UILabel alloc] init];
     [label setTextAlignment:NSTextAlignmentCenter];
