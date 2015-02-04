@@ -12,6 +12,7 @@
 #import "GameView.h"
 #import "UIView+CaptureView.h"
 #import "SplitView.h"
+#import "DBHelper.h"
 
 @interface GameViewController ()
 
@@ -136,7 +137,21 @@
  */
 -(void)saveAction:(UIButton *)sender
 {
+    NSMutableDictionary *dictViewFrame=[[NSMutableDictionary alloc] initWithCapacity:0];
+    NSMutableDictionary *dictViewTag=[[NSMutableDictionary alloc] initWithCapacity:0];
 
+    for (SplitView *splitView in _gameView.splitViewArrayM) {
+        [dictViewFrame setObject:NSStringFromCGRect(splitView.frame) forKey:[NSString stringWithFormat:@"%d",splitView.btn.tag]];
+        [dictViewTag setObject:[NSNumber numberWithInteger:splitView.tag] forKey:[NSString stringWithFormat:@"%d",splitView.btn.tag]];
+    }
+    NSDictionary *dataFrame=[[NSDictionary alloc] initWithDictionary:dictViewFrame];
+    NSDictionary *dataTag=[[NSDictionary alloc] initWithDictionary:dictViewTag];
+    
+    NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
+    [ud setObject:dataFrame forKey:@"gameViewFrame"];
+    [ud setObject:dataTag forKey:@"gameViewTag"];
+    [ud synchronize];
+    NSLog(@"save success");
 }
 
 /**
@@ -146,7 +161,17 @@
  */
 -(void)loadAction:(UIButton *)sender
 {
-    
+    NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
+    NSDictionary *frameDict=[ud objectForKey:@"gameViewFrame"];
+    NSDictionary *tagDict=[ud objectForKey:@"gameViewTag"];
+    for (SplitView *splitView in _gameView.splitViewArrayM) {
+        NSInteger targetTag=[tagDict[[NSString stringWithFormat:@"%d",splitView.btn.tag]] integerValue];
+        CGRect targetRect=CGRectFromString(frameDict[[NSString stringWithFormat:@"%d",splitView.btn.tag]]) ;
+        [UIView animateWithDuration:0.3 animations:^{
+            splitView.frame=targetRect;
+            splitView.tag=targetTag;
+        }];
+    }
 }
 
 /**
