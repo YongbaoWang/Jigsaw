@@ -154,6 +154,8 @@
 //    [ud synchronize];
     
 //    [DBHelper saveData:_gameView andGameStateModel:[[GameStateModel alloc] ]];
+    GameStateModel *model=[[GameStateModel alloc] initWithBlankRect:_blankRect andBlankNum:_blankNum andGameLevel:_gameLevel andGameSteps:_stepsCount andPicName:_picName];
+    [DBHelper saveData:_gameView andGameStateModel:model];
     NSLog(@"save finish");
 }
 
@@ -164,7 +166,13 @@
  */
 -(void)loadAction:(UIButton *)sender
 {
-//    [DBHelper loadData:_gameView andPicName:_picName];
+    GameStateModel *model=[DBHelper loadData:_gameView andPicName:_picName];
+    _blankNum=model.blankNum;
+    _blankRect=CGRectFromString(model.blankRect);
+    _gameLevel=model.gameLevel;
+    _stepsCount=model.gameSteps;
+    [_stepsLbl setText:[NSString stringWithFormat:@"Your steps:%d",_stepsCount]];
+    
     NSLog(@"load finish");
 //    NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
 //    NSDictionary *frameDict=[ud objectForKey:@"gameViewFrame"];

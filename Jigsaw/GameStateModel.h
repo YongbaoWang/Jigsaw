@@ -30,4 +30,6 @@
  */
 @property(nonatomic,copy)NSString *picName;
 
+-(id)initWithBlankRect:(CGRect)rect andBlankNum:(NSInteger)blankNum andGameLevel:(NSInteger)gameLevel andGameSteps:(NSInteger)gameSteps andPicName:(NSString *)picName;
+
 @end

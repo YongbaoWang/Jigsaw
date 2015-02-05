@@ -25,9 +25,9 @@
             NSLog(@"error when creating db table_cell");
         } else {
             //保存数据
+            sql=[NSString stringWithFormat:@"select count(0) from %@ where %@='%@'",TABLENAME_Cell,PicName,model.picName];
+            int result=[db intForQuery:sql];
             for (SplitView *splitView in gameView.splitViewArrayM) {
-                sql=[NSString stringWithFormat:@"select count(0) from %@ where %@='%@'",TABLENAME_Cell,PicName,model.picName];
-                int result=[db intForQuery:sql];
                 if (result==0) {
                     sql= [NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@', '%@','%@') VALUES ('%@', '%@', '%@', '%@','%@')",
                           TABLENAME_Cell,BtnTag,ViewTag,ViewFrame,PicName,Type, [NSNumber numberWithInteger:splitView.btn.tag], [NSNumber numberWithInteger:splitView.tag],NSStringFromCGRect(splitView.frame),model.picName, @1];
@@ -65,24 +65,38 @@
 {
     NSString *path=[NSTemporaryDirectory() stringByAppendingPathComponent:@"data.db"];
     FMDatabase *db=[FMDatabase databaseWithPath:path];
+    GameStateModel *model=nil;
     if (db && [db open]) {
-
+        NSString *sql;
+        //读取游戏单元格坐标信息
         for (SplitView *splitView in gameView.splitViewArrayM) {
-            NSString *sql=[NSString stringWithFormat:@"select * from %@ where %@='%@' and %@='%@' and %@='1' ",TABLENAME_Cell,PicName,picName,BtnTag,[NSNumber numberWithInteger:splitView.btn.tag],Type];
+           sql=[NSString stringWithFormat:@"select * from %@ where %@='%@' and %@='%@' and %@='1' ",TABLENAME_Cell,PicName,picName,BtnTag,[NSNumber numberWithInteger:splitView.btn.tag],Type];
             FMResultSet *rs=[db executeQuery:sql];
             if ([rs next]) {
                 NSInteger targetTag=[rs intForColumn:ViewTag];
                 CGRect targetRect=CGRectFromString([rs stringForColumn:ViewFrame]) ;
+                NSLog(@"viewTag:%d,btnTag:%d",targetTag,splitView.btn.tag);
                 [UIView animateWithDuration:0.3 animations:^{
                     splitView.frame=targetRect;
                     splitView.tag=targetTag;
                 }];
             }
         }
+        //读取游戏状态信息
+        sql=[NSString stringWithFormat:@"select * from %@ where %@='%@'",TABLENAME_STATE,PicName,picName];
+        FMResultSet *set=[db executeQuery:sql];
+        if ([set next]) {
+            model=[[GameStateModel alloc] init];
+            model.blankNum=[set intForColumn:BlankNum];
+            model.blankRect=[set stringForColumn:BlankRect];
+            model.gameLevel=[set intForColumn:GameLevel];
+            model.gameSteps=[set intForColumn:GameSteps];
+            model.picName=picName;
+        }
         
         [db close];
     }
-    return nil;
+    return model;
 }
 
 @end
