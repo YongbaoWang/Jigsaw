@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameView.h"
+#import "GameStateModel.h"
 
 @interface DBHelper : NSObject
 
@@ -15,14 +16,16 @@
  *  保存游戏进度
  *
  *  @param gameView 当前游戏面板
+ *  @param picName  图片名称
  */
-+(void)saveData:(GameView *)gameView;
++(void)saveData:(GameView *)gameView andGameStateModel:(GameStateModel *)model;
 
 /**
  *  加载游戏进度
  *
  *  @param gameView 当前游戏面板
+ *  @param picName  图片名称
  */
-+(void)loadData:(GameView *)gameView;
++(GameStateModel *)loadData:(GameView *)gameView andPicName:(NSString *)picName;
 
 @end

@@ -32,6 +32,7 @@
 		1D5248DB1A80704D0074F6D4 /* SplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5248DA1A80704D0074F6D4 /* SplitView.m */; };
 		1D65EB0B1A823BEA001DA771 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65EB0A1A823BEA001DA771 /* DBHelper.m */; };
 		1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */; };
+		1DC533F41A839D8800F2D416 /* GameStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC533F31A839D8800F2D416 /* GameStateModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		1D65EB0C1A824890001DA771 /* DatabaseMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMacro.h; sourceTree = "<group>"; };
 		1D7A4B8E1A7CE84C0038EFAD /* UIView+CaptureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CaptureView.h"; sourceTree = "<group>"; };
 		1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CaptureView.m"; sourceTree = "<group>"; };
+		1DC533F21A839D8800F2D416 /* GameStateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStateModel.h; sourceTree = "<group>"; };
+		1DC533F31A839D8800F2D416 /* GameStateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStateModel.m; sourceTree = "<group>"; };
 		9235D4BB5A0612DF98723B17 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90B60DE389312F8C7E06C44 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EB7B6D153E95FDFE49B7906B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 		1D17EE8A1A7CD6E300C3D8C7 /* Jigsaw */ = {
 			isa = PBXGroup;
 			children = (
+				1DC533F11A839D6B00F2D416 /* Models */,
 				1D17EEB31A7CD6F700C3D8C7 /* AppDelegate */,
 				1D11EDD61A7F2F5F00425575 /* Macro */,
 				1D17EEB41A7CD70800C3D8C7 /* Sections */,
@@ -289,6 +293,15 @@
 				1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */,
 			);
 			name = Setting;
+			sourceTree = "<group>";
+		};
+		1DC533F11A839D6B00F2D416 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1DC533F21A839D8800F2D416 /* GameStateModel.h */,
+				1DC533F31A839D8800F2D416 /* GameStateModel.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		CC5094E69853E0862B566693 /* Pods */ = {
@@ -434,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D17EEC71A7CD8B900C3D8C7 /* GameViewController.m in Sources */,
+				1DC533F41A839D8800F2D416 /* GameStateModel.m in Sources */,
 				1D17EE951A7CD6E300C3D8C7 /* AppDelegate.m in Sources */,
 				1D11EDDB1A7F8E6800425575 /* GameView.m in Sources */,
 				1D5248DB1A80704D0074F6D4 /* SplitView.m in Sources */,
