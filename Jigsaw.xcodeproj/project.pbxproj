@@ -30,6 +30,7 @@
 		1D17EECF1A7CD8DD00C3D8C7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */; };
 		1D17EED01A7CD8DD00C3D8C7 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */; };
 		1D5248DB1A80704D0074F6D4 /* SplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5248DA1A80704D0074F6D4 /* SplitView.m */; };
+		1D58CDAC1A873270004F5832 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D58CDAB1A873270004F5832 /* iCarousel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1D65EB0B1A823BEA001DA771 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65EB0A1A823BEA001DA771 /* DBHelper.m */; };
 		1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */; };
 		1DC533F41A839D8800F2D416 /* GameStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC533F31A839D8800F2D416 /* GameStateModel.m */; };
@@ -81,6 +82,8 @@
 		1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		1D5248D91A80704D0074F6D4 /* SplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitView.h; sourceTree = "<group>"; };
 		1D5248DA1A80704D0074F6D4 /* SplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitView.m; sourceTree = "<group>"; };
+		1D58CDAA1A873270004F5832 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		1D58CDAB1A873270004F5832 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		1D65EB091A823BEA001DA771 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		1D65EB0A1A823BEA001DA771 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		1D65EB0C1A824890001DA771 /* DatabaseMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMacro.h; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 		1D17EEB71A7CD76A00C3D8C7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1D58CDAA1A873270004F5832 /* iCarousel.h */,
+				1D58CDAB1A873270004F5832 /* iCarousel.m */,
 				18DC87E51A7FD555004E1C45 /* SplitLabel.h */,
 				18DC87E61A7FD555004E1C45 /* SplitLabel.m */,
 				1D5248D91A80704D0074F6D4 /* SplitView.h */,
@@ -451,6 +456,7 @@
 				1D17EE951A7CD6E300C3D8C7 /* AppDelegate.m in Sources */,
 				1D11EDDB1A7F8E6800425575 /* GameView.m in Sources */,
 				1D5248DB1A80704D0074F6D4 /* SplitView.m in Sources */,
+				1D58CDAC1A873270004F5832 /* iCarousel.m in Sources */,
 				18DC87E71A7FD555004E1C45 /* SplitLabel.m in Sources */,
 				1D11EDD51A7F2E7100425575 /* PicTableViewCell.m in Sources */,
 				1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */,
