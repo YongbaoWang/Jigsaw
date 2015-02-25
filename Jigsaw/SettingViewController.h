@@ -14,6 +14,9 @@ typedef enum : NSUInteger {
     kGameHard,
 } GameLevel;
 
-@interface SettingViewController : UIViewController
+@interface SettingViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITableView *myTableView;
+
+
 
 @end

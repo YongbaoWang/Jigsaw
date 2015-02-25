@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="5053"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
-                <outlet property="myTableView" destination="vJL-VX-Cxj" id="4Gb-lp-Xh1"/>
+                <outlet property="picCarousel" destination="SdF-1f-jIS" id="MrB-yw-hEI"/>
                 <outlet property="toolBg" destination="fji-dh-c0U" id="a6L-JH-to3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="LTc-HT-12e"/>
             </connections>
@@ -17,40 +18,34 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vJL-VX-Cxj">
-                    <rect key="frame" x="44" y="90" width="232" height="478"/>
-                    <color key="backgroundColor" red="0.83529411764705885" green="0.68627450980392157" blue="0.50980392156862742" alpha="0.25" colorSpace="deviceRGB"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="SqY-1g-aJ8"/>
-                        <outlet property="delegate" destination="-1" id="RxP-HI-gdy"/>
-                    </connections>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fji-dh-c0U">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                     <color key="backgroundColor" red="0.80784313730000001" green="0.80784313730000001" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="6df-8Z-1R2"/>
+                        <constraint firstAttribute="height" constant="60" id="6df-8Z-1R2"/>
+                    </constraints>
+                </view>
+                <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SdF-1f-jIS" customClass="iCarousel">
+                    <rect key="frame" x="0.0" y="70" width="320" height="320"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="320" id="ipi-sm-KVP"/>
+                        <constraint firstAttribute="width" secondItem="SdF-1f-jIS" secondAttribute="height" multiplier="1:1" id="n8y-wn-pcc"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="SdF-1f-jIS" secondAttribute="trailing" id="3Rg-PG-6dT"/>
                 <constraint firstItem="fji-dh-c0U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4Bc-rj-Hzc"/>
                 <constraint firstItem="fji-dh-c0U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5N2-Tc-IAh"/>
                 <constraint firstAttribute="trailing" secondItem="fji-dh-c0U" secondAttribute="trailing" id="86Z-Te-VSx"/>
+                <constraint firstItem="SdF-1f-jIS" firstAttribute="top" secondItem="fji-dh-c0U" secondAttribute="bottom" constant="10" id="GWd-rD-iqR"/>
                 <constraint firstItem="fji-dh-c0U" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TB7-ey-cyH"/>
                 <constraint firstItem="fji-dh-c0U" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="U9U-iR-gE6"/>
-                <constraint firstAttribute="trailing" secondItem="vJL-VX-Cxj" secondAttribute="trailing" constant="44" id="aaK-bO-JOV"/>
-                <constraint firstItem="vJL-VX-Cxj" firstAttribute="top" secondItem="fji-dh-c0U" secondAttribute="bottom" id="sel-2E-UEa"/>
-                <constraint firstAttribute="bottom" secondItem="vJL-VX-Cxj" secondAttribute="bottom" id="uRS-zb-LoZ"/>
+                <constraint firstItem="SdF-1f-jIS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rTd-Cq-dde"/>
                 <constraint firstAttribute="trailing" secondItem="fji-dh-c0U" secondAttribute="trailing" id="xMR-pI-jlE"/>
-                <constraint firstItem="vJL-VX-Cxj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="44" id="zRr-Aq-qs1"/>
             </constraints>
         </view>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

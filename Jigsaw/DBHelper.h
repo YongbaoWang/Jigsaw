@@ -16,7 +16,7 @@
  *  保存游戏进度
  *
  *  @param gameView 当前游戏面板
- *  @param picName  图片名称
+ *  @param model  游戏实体
  */
 +(void)saveData:(GameView *)gameView andGameStateModel:(GameStateModel *)model;
 

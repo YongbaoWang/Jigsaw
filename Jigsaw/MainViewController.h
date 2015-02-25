@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iCarousel.h"
 
-@interface MainViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-{
-    NSMutableArray *_picArrayM;
-}
+@interface MainViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) IBOutlet UIView *toolBg;
-
+@property (strong, nonatomic) IBOutlet iCarousel *picCarousel;
 
 @end
