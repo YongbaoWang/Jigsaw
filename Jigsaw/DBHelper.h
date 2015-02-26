@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GameView.h"
 #import "GameStateModel.h"
+#import "Enum.h"
 
 @interface DBHelper : NSObject
 
@@ -27,5 +28,19 @@
  *  @param picName  图片名称
  */
 +(GameStateModel *)loadData:(GameView *)gameView andPicName:(NSString *)picName;
+
+/**
+ *  保存游戏难度
+ *
+ *  @param gameLevel 游戏难度等级
+ */
++(void)saveGameLevel:(GameLevel)gameLevel;
+
+/**
+ *  获取游戏难度
+ *
+ *  @return 游戏难度
+ */
++(GameLevel)loadGameLevel;
 
 @end

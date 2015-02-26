@@ -9,13 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GameView.h"
 #import "SettingViewController.h"
-
-typedef enum : NSUInteger {
-    kGameNormal,
-    kGamePlaying,
-    kGameEnd,
-    kGameReset
-} GameState;
+#import "Enum.h"
 
 @interface GameViewController : UIViewController
 {

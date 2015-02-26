@@ -106,7 +106,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_gameView]-20@700-[resetBtn(30)]-(>=20)-|" options:0 metrics:0 views:resetViews]];
     [self.view addSubview:resetBtn];
     
-    _gameLevel=kGameMedium;
+    _gameLevel=[DBHelper loadGameLevel];
     _stepsCount=0;
 }
 

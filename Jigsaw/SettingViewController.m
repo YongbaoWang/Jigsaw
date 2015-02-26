@@ -7,6 +7,8 @@
 //
 
 #import "SettingViewController.h"
+#import "DBHelper.h"
+#import "PicManagerViewController.h"
 
 #define PHOTO_HEIGHT 100
 
@@ -33,12 +35,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.view setBackgroundColor:[UIColor grayColor]];
-    [self.myTableView setSectionIndexColor:[UIColor redColor]];
-    [self.myTableView setSectionIndexBackgroundColor:[UIColor clearColor]];
-//    [self.myTableView setSectionIndexTrackingBackgroundColor:[UIColor purpleColor]];
-
-    [self.myTableView setEditing:YES animated:YES];
-//    [self.myTableView setAllowsSelectionDuringEditing:YES];
     
 }
 
@@ -51,63 +47,23 @@
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 26;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [NSString stringWithFormat:@"title-%d",section];
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    return [NSString stringWithFormat:@"footer-%d",section];
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return true;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%d",editingStyle);
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
-    NSMutableArray *array=[NSMutableArray arrayWithCapacity:0];
-    for (int i='A'; i<='Z'; i++) {
-        char c=i;
-        [array addObject:[NSString stringWithFormat:@"%c",i]];
+    if (section==0) { //游戏难度、图片管理
+        return 2;
     }
-    return array;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-{
-    return index-1;
-
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"del";
-}
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    NSLog(@"%d",destinationIndexPath.row);
+    else if(section==1) //分析、在线反馈、检查更新
+    {
+        return 3;
+    }
+    else if(section==2) //赞助作者
+    {
+        return 1;
+    }
+    return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,20 +73,151 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identity];
     }
-    cell.textLabel.text=@"A";
-    cell.detailTextLabel.text=@"B";
-    cell.shouldIndentWhileEditing=NO;
+    switch (indexPath.section) {
+        case 0:
+        {
+            if (indexPath.row==0) { //游戏难度
+                cell.textLabel.text=@"游戏难度";
+                NSString *text;
+                NSInteger dbLevel=[DBHelper loadGameLevel];
+                if (dbLevel==kGameEasy) {
+                    text=@"Easy";
+                }
+                else if (dbLevel==kGameMedium) {
+                    text=@"Medium";
+                }
+                else if (dbLevel==kGameHard) {
+                    text=@"Hard";
+                }
+                cell.detailTextLabel.text=text;
+            }
+            else if(indexPath.row==1) //图片管理
+            {
+                cell.textLabel.text=@"图片管理";
+            }
+        }
+            break;
+        case 1:
+        {
+            if (indexPath.row==0) { //分享
+                cell.textLabel.text=@"分享";
+            }
+            else if(indexPath.row==1) //在线反馈
+            {
+                cell.textLabel.text=@"在线反馈";
+
+            }
+            else if(indexPath.row==2) //检查更新
+            {
+                cell.textLabel.text=@"检查更新";
+                cell.detailTextLabel.text=@"当前版本:1.0.0";
+            }
+        }
+            break;
+        case 2:
+        {
+            if (indexPath.row==0) { //赞助作者
+                cell.textLabel.text=@"赞助作者";
+            }
+        }
+            break;
+        default:
+            break;
+    }
+    cell.textLabel.font=[UIFont systemFontOfSize:16.0];
+    cell.detailTextLabel.font=[UIFont systemFontOfSize:14.0];
+    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return UITableViewCellEditingStyleNone;
+    if (section==2) {
+        return 60;
+    }
+    return 0;
 }
 
-//- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return NO;
-//}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section==2) {
+        UILabel *label=[[UILabel alloc] init];
+        label.textAlignment=NSTextAlignmentCenter;
+        label.text= @"Stay foolish.Stay hungry!";
+        return label;
+    }
+    return nil;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+        {
+            if (indexPath.row==0) { //游戏难度
+                UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"简单模式",@"一般模式",@"难度模式", nil];
+                [actionSheet showInView:self.view];
+            }
+            else if(indexPath.row==1) //图片管理
+            {
+                PicManagerViewController *picManaVC=[[PicManagerViewController alloc] init];
+                [self.navigationController pushViewController:picManaVC animated:YES];
+                
+            }
+        }
+            break;
+        case 1:
+        {
+            if (indexPath.row==0) { //分享
+               
+            }
+            else if(indexPath.row==1) //在线反馈
+            {
+                
+                
+            }
+            else if(indexPath.row==2) //检查更新
+            {
+               
+            }
+        }
+            break;
+        case 2:
+        {
+            if (indexPath.row==0) { //赞助作者
+                
+            }
+        }
+            break;
+        default:
+            break;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%d",buttonIndex);
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell *cell=[_myTableView cellForRowAtIndexPath:indexPath];
+    GameLevel gameLevel;
+    if (buttonIndex==0) { //简单模式
+        cell.detailTextLabel.text=@"Easy";
+        gameLevel=kGameEasy;
+    }
+    else if(buttonIndex==1) //一般模式
+    {
+        cell.detailTextLabel.text=@"Medium";
+        gameLevel=kGameMedium;
+    }
+    else if(buttonIndex==2) //难度模式
+    {
+        cell.detailTextLabel.text=@"Hard";
+        gameLevel=kGameHard;
+    }
+    [DBHelper saveGameLevel:gameLevel];
+}
 
 @end

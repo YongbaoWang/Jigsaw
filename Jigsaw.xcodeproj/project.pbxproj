@@ -62,6 +62,9 @@
 		1D7E76FC1A899F14006285E5 /* 27.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D7E76DE1A899F14006285E5 /* 27.jpg */; };
 		1D7E76FD1A899F14006285E5 /* 28.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D7E76DF1A899F14006285E5 /* 28.jpg */; };
 		1D7E76FE1A899F14006285E5 /* 29.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D7E76E01A899F14006285E5 /* 29.jpg */; };
+		1D8F19431A9F099D00524402 /* PicManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F19411A9F099D00524402 /* PicManagerViewController.m */; };
+		1D8F19441A9F099D00524402 /* PicManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D8F19421A9F099D00524402 /* PicManagerViewController.xib */; };
+		1D8F19471A9F2DD600524402 /* PicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F19461A9F2DD600524402 /* PicCollectionViewCell.m */; };
 		1DC533F41A839D8800F2D416 /* GameStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC533F31A839D8800F2D416 /* GameStateModel.m */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +149,12 @@
 		1D7E76DE1A899F14006285E5 /* 27.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 27.jpg; sourceTree = "<group>"; };
 		1D7E76DF1A899F14006285E5 /* 28.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 28.jpg; sourceTree = "<group>"; };
 		1D7E76E01A899F14006285E5 /* 29.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 29.jpg; sourceTree = "<group>"; };
+		1D8F193F1A9EEBD900524402 /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
+		1D8F19401A9F099D00524402 /* PicManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicManagerViewController.h; sourceTree = "<group>"; };
+		1D8F19411A9F099D00524402 /* PicManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicManagerViewController.m; sourceTree = "<group>"; };
+		1D8F19421A9F099D00524402 /* PicManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicManagerViewController.xib; sourceTree = "<group>"; };
+		1D8F19451A9F2DD600524402 /* PicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicCollectionViewCell.h; sourceTree = "<group>"; };
+		1D8F19461A9F2DD600524402 /* PicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicCollectionViewCell.m; sourceTree = "<group>"; };
 		1DC533F21A839D8800F2D416 /* GameStateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStateModel.h; sourceTree = "<group>"; };
 		1DC533F31A839D8800F2D416 /* GameStateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStateModel.m; sourceTree = "<group>"; };
 		9235D4BB5A0612DF98723B17 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +193,7 @@
 				1D11EDD81A7F2FC600425575 /* AppMacro.h */,
 				1D11EDD71A7F2FB300425575 /* ViewMacro.h */,
 				1D65EB0C1A824890001DA771 /* DatabaseMacro.h */,
+				1D8F193F1A9EEBD900524402 /* Enum.h */,
 			);
 			name = Macro;
 			sourceTree = "<group>";
@@ -318,10 +328,12 @@
 		1D17EEB81A7CD77100C3D8C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1D11EDD31A7F2E7100425575 /* PicTableViewCell.h */,
-				1D11EDD41A7F2E7100425575 /* PicTableViewCell.m */,
 				1D11EDD91A7F8E6800425575 /* GameView.h */,
 				1D11EDDA1A7F8E6800425575 /* GameView.m */,
+				1D11EDD31A7F2E7100425575 /* PicTableViewCell.h */,
+				1D11EDD41A7F2E7100425575 /* PicTableViewCell.m */,
+				1D8F19451A9F2DD600524402 /* PicCollectionViewCell.h */,
+				1D8F19461A9F2DD600524402 /* PicCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -352,6 +364,9 @@
 				1D17EECC1A7CD8DD00C3D8C7 /* SettingViewController.h */,
 				1D17EECD1A7CD8DD00C3D8C7 /* SettingViewController.m */,
 				1D17EECE1A7CD8DD00C3D8C7 /* SettingViewController.xib */,
+				1D8F19401A9F099D00524402 /* PicManagerViewController.h */,
+				1D8F19411A9F099D00524402 /* PicManagerViewController.m */,
+				1D8F19421A9F099D00524402 /* PicManagerViewController.xib */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -491,6 +506,7 @@
 				1D7E76E61A899F14006285E5 /* 5.jpg in Resources */,
 				1D7E76F71A899F14006285E5 /* 22.jpg in Resources */,
 				1D7E76E41A899F14006285E5 /* 3.jpg in Resources */,
+				1D8F19441A9F099D00524402 /* PicManagerViewController.xib in Resources */,
 				1D7E76ED1A899F14006285E5 /* 12.jpg in Resources */,
 				1D7E76E11A899F14006285E5 /* 0.jpg in Resources */,
 				1D7E76EA1A899F14006285E5 /* 9.jpg in Resources */,
@@ -579,10 +595,12 @@
 				1D17EE951A7CD6E300C3D8C7 /* AppDelegate.m in Sources */,
 				1D11EDDB1A7F8E6800425575 /* GameView.m in Sources */,
 				1D5248DB1A80704D0074F6D4 /* SplitView.m in Sources */,
+				1D8F19471A9F2DD600524402 /* PicCollectionViewCell.m in Sources */,
 				18DC87E71A7FD555004E1C45 /* SplitLabel.m in Sources */,
 				1D11EDD51A7F2E7100425575 /* PicTableViewCell.m in Sources */,
 				1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */,
 				1D17EEBF1A7CD82900C3D8C7 /* MainViewController.m in Sources */,
+				1D8F19431A9F099D00524402 /* PicManagerViewController.m in Sources */,
 				1D17EE911A7CD6E300C3D8C7 /* main.m in Sources */,
 				1D65EB0B1A823BEA001DA771 /* DBHelper.m in Sources */,
 				1D17EECF1A7CD8DD00C3D8C7 /* SettingViewController.m in Sources */,

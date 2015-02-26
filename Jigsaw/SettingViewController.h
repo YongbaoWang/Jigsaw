@@ -7,16 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Enum.h"
 
-typedef enum : NSUInteger {
-    kGameEasy,
-    kGameMedium,
-    kGameHard,
-} GameLevel;
+@interface SettingViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 
-@interface SettingViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
-
-
 
 @end

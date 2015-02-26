@@ -9,20 +9,25 @@
 #ifndef Jigsaw_DatabaseMacro_h
 #define Jigsaw_DatabaseMacro_h
 
-#define TABLENAME_Cell @"GameProgress"
-#define ID @"ID"
-#define BtnTag @"BtnTag"
-#define ViewTag @"ViewTag"
-#define ViewFrame @"ViewFrame"
-#define PicName @"PicName"
-#define Type @"Type"
+#define TABLENAME_Progress @"GameProgress"
+#define GameProgress_ID @"GameProgress_ID"
+#define GameProgress_BtnTag @"GameProgress_BtnTag"
+#define GameProgress_ViewTag @"GameProgress_ViewTag"
+#define GameProgress_ViewFrame @"GameProgress_ViewFrame"
+#define GameProgress_PicName @"GameProgress_PicName"
+#define GameProgress_Type @"GameProgress_Type"
 
 #define TABLENAME_STATE @"GameState"
-#define ID @"ID"
-#define BlankRect @"BlankRect"
-#define BlankNum @"BlankNum"
-#define GameLevel @"GameLevel"
-#define GameSteps @"GameSteps"
-#define PicName @"PicName"
+#define GameState_ID @"GameState_ID"
+#define GameState_BlankRect @"GameState_BlankRect"
+#define GameState_BlankNum @"GameState_BlankNum"
+#define GameState_GameLevel @"GameState_GameLevel"
+#define GameState_GameSteps @"GameState_GameSteps"
+#define GameState_PicName @"GameState_PicName"
+
+#define TABLENAME_AppInfo @"AppInfo"
+#define AppInfo_ID @"AppInfo_ID"
+#define AppInfo_GameLevel @"AppInfo_GameLevel"
+#define AppInfo_AppVersion @"AppInfo_AppVersion"
 
 #endif
