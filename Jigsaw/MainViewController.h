@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *toolBg;
 @property (strong, nonatomic) IBOutlet iCarousel *picCarousel;

@@ -77,6 +77,15 @@
     [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label(30)]-2-|" options:0 metrics:0 views:views]];
     
     
+    UIButton *picStyleBtn=[[UIButton alloc] init];
+    [picStyleBtn setBackgroundImage:[UIImage imageNamed:@"style"] forState:UIControlStateNormal] ;
+    [_toolBg addSubview:picStyleBtn];
+    [picStyleBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
+    NSDictionary *picStyleDic=NSDictionaryOfVariableBindings(_toolBg,picStyleBtn);
+    [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[picStyleBtn(30)]-8-|" options:0 metrics:0 views:picStyleDic]];
+    [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[picStyleBtn(30)]-5-|" options:0 metrics:0 views:picStyleDic]];
+    [picStyleBtn addTarget:self action:@selector(changePicBrowseStyle) forControlEvents:UIControlEventTouchUpInside];
+    
     _picCarousel.delegate=self;
     _picCarousel.dataSource=self;
     
@@ -86,6 +95,7 @@
         _picArrayM[i]=[NSString stringWithFormat:@"%d",i];
     }
     [_picCarousel reloadData];
+    _picCarousel.currentItemIndex=0;
 }
 
 -(void)settingAction:(id)sender
@@ -112,6 +122,13 @@
     
 }
 
+-(void)changePicBrowseStyle
+{
+
+    UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@"请选择图片浏览模式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"Linear",@"Rotary",@"InvertedRotary",@"Cylinder",@"InvertedCylinder",@"Wheel",@"InvertedWheel",@"CoverFlow",@"CoverFlow2",@"TimeMachine",@"InvertedTimeMachine", nil];
+    [actionSheet showInView:self.view];
+}
+
 #pragma mark - iCarouselDataSource
 -(NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
@@ -128,6 +145,11 @@
     ((UIImageView *)view).image=image;
     
     return view;
+}
+
+- (CGFloat)carouselItemWidth:(iCarousel *)carousel
+{
+    return 240;
 }
 
 #pragma mark - iCarouselDelegate
@@ -151,5 +173,11 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    _picCarousel.type=buttonIndex;
 }
 @end
