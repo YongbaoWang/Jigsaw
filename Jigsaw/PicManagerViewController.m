@@ -12,6 +12,7 @@
 @interface PicManagerViewController ()
 
 @property(nonatomic,strong)NSMutableDictionary *selectedDic;
+@property(nonatomic,strong)NSMutableArray *picArrayM;
 
 @end
 
@@ -35,13 +36,30 @@
     self.collectionView.dataSource=self;
     self.collectionView.delegate=self;
     [self.collectionView registerClass:[PicCollectionViewCell class] forCellWithReuseIdentifier:@"myCollectionCell"];
+    
+    UIBarButtonItem *deleteBarBtn=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deletePicture)];
+    self.navigationItem.rightBarButtonItem=deleteBarBtn;
 
+    for (int i=0; i<30; i++) {
+        [self.picArrayM addObject:[NSString stringWithFormat:@"%d.jpg",i]];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)deletePicture
+{
+    NSArray *deleteIndex=[_selectedDic allKeys];
+    for (NSString *picIndex in deleteIndex) {
+        [_picArrayM removeObjectAtIndex:picIndex.integerValue];
+    }
+    [_selectedDic removeAllObjects];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - lazy loading
@@ -53,10 +71,18 @@
     return _selectedDic;
 }
 
+-(NSMutableArray *)picArrayM
+{
+    if (_picArrayM==nil) {
+        _picArrayM=[[NSMutableArray alloc] initWithCapacity:0];
+    }
+    return _picArrayM;
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 30;
+    return _picArrayM.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -64,13 +90,12 @@
     static NSString *identity=@"myCollectionCell";
     PicCollectionViewCell *cell=(PicCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identity forIndexPath:indexPath];
     [self refreshCell:cell forItemAtIndexPath:indexPath];
-    NSLog(@"item:%d,row:%d",indexPath.item,indexPath.row);
     return cell;
 }
 
 -(void)refreshCell:(PicCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    cell.image=[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",indexPath.row]];
+    cell.image=[UIImage imageNamed:_picArrayM[indexPath.row]];
     NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
     id value= [_selectedDic objectForKey:key];
     if (value!=nil && [value boolValue]==YES) {
@@ -81,11 +106,6 @@
     }
     [cell.contentView setBackgroundColor:[UIColor blueColor]];
     [cell setBackgroundColor:[UIColor redColor]];
-}
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 3;
 }
 
 #pragma mark - UICollectionViewDelegate
