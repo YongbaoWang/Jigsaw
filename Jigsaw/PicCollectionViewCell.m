@@ -26,13 +26,13 @@
         selectInditorView.tag=1001;
         selectInditorView.selected=NO;
         [selectInditorView addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [selectInditorView setUserInteractionEnabled:NO];
+        [selectInditorView setUserInteractionEnabled:NO];
         [selectInditorView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.contentView addSubview:selectInditorView];
         
         NSDictionary *views=NSDictionaryOfVariableBindings(self.contentView,selectInditorView);
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[selectInditorView(22)]-2-|" options:0 metrics:0 views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[selectInditorView(22)]-2-|" options:0 metrics:0 views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[selectInditorView(16)]-2-|" options:0 metrics:0 views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[selectInditorView(16)]-2-|" options:0 metrics:0 views:views]];
 
     }
     return self;
