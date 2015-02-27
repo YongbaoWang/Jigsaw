@@ -10,9 +10,14 @@
 
 @interface PicCollectionViewCell : UICollectionViewCell
 
+
 /**
  *  cell显示图片
  */
 @property(nonatomic,strong)UIImage *image;
+/**
+ *  当前cell是否选中
+ */
+@property(nonatomic,assign)BOOL checked ;
 
 @end

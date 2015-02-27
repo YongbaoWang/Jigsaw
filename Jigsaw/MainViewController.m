@@ -44,7 +44,7 @@
 -(void)initView
 {
     UILabel * title=[[UILabel alloc]initWithFrame:CGRectMake(0.0f,0.0f, 120.0f, 36.0f)];
-    title.text=@"拼图游戏";
+//    title.text=@"拼图游戏";
     [title setTextAlignment:NSTextAlignmentCenter];
     self.navigationItem.titleView=title;
     
@@ -65,7 +65,7 @@
     
     UILabel *label=[[UILabel alloc] init];
     [label setTextAlignment:NSTextAlignmentCenter];
-    [label setText:@"点击图片开始游戏。。。"];
+//    [label setText:@"点击图片开始游戏。。。"];
     [label setTextColor:[UIColor blueColor]];
     [label setFont:[UIFont boldSystemFontOfSize:18.0]];
     [_toolBg addSubview:label];

@@ -7,9 +7,11 @@
 //
 
 #import "PicManagerViewController.h"
-#import "RFQuiltLayout.h"
+#import "PicCollectionViewCell.h"
 
 @interface PicManagerViewController ()
+
+@property(nonatomic,strong)NSMutableDictionary *selectedDic;
 
 @end
 
@@ -32,14 +34,23 @@
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     self.collectionView.dataSource=self;
     self.collectionView.delegate=self;
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"myCollectionCell"];
-    
+    [self.collectionView registerClass:[PicCollectionViewCell class] forCellWithReuseIdentifier:@"myCollectionCell"];
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - lazy loading
+-(NSMutableDictionary *)selectedDic
+{
+    if (_selectedDic==nil) {
+        _selectedDic=[[NSMutableDictionary alloc] initWithCapacity:0];
+    }
+    return _selectedDic;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -51,12 +62,25 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identity=@"myCollectionCell";
-    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:identity forIndexPath:indexPath];
-    UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",indexPath.row]];
-//    imageView.image=[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.jpg"]];
-    [cell.contentView addSubview:imageView];
+    PicCollectionViewCell *cell=(PicCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identity forIndexPath:indexPath];
+    [self refreshCell:cell forItemAtIndexPath:indexPath];
+    NSLog(@"item:%d,row:%d",indexPath.item,indexPath.row);
     return cell;
+}
+
+-(void)refreshCell:(PicCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+//    cell.image=[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",indexPath.row]];
+    NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
+    id value= [_selectedDic objectForKey:key];
+    if (value!=nil && [value boolValue]==YES) {
+        cell.checked=YES;
+    }
+    else {
+        cell.checked=NO;
+    }
+    [cell.contentView setBackgroundColor:[UIColor blueColor]];
+    [cell setBackgroundColor:[UIColor redColor]];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -65,14 +89,19 @@
 }
 
 #pragma mark - UICollectionViewDelegate
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%d",indexPath.row);
+    PicCollectionViewCell *cell=(PicCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
+    id value= [self.selectedDic objectForKey:key];
+    if (value!=nil && [value boolValue]==YES) {
+        _selectedDic[key]=[NSNumber numberWithBool:NO];
+        cell.checked=NO;
+    }
+    else {
+        _selectedDic[key]=[NSNumber numberWithBool:YES];
+        cell.checked=YES;
+    }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
