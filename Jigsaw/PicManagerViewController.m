@@ -71,7 +71,7 @@
     for (NSString *picIndex in deleteIndex) {
         [_picArrayM removeObjectAtIndex:picIndex.integerValue];
         NSNumber *key=[NSNumber numberWithInteger:picIndex.integerValue];
-#warning 删除的图片不对,  写个例子，来验证一下数组和字段，删除后，各个元素的排列顺序。
+#warning 删除的图片不对,  写个例子，来验证一下数组和字典，删除后，各个元素的排列顺序。
         [self.imageMemoryPool removeObjectForKey:key];
     }
     [_selectedDic removeAllObjects];

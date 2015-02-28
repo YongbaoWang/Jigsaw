@@ -5,16 +5,13 @@ PODS:
   - FMDB/standard (2.5):
     - FMDB/common
   - iCarousel (1.8.1)
-  - RFQuiltLayout (1.1.1)
 
 DEPENDENCIES:
   - FMDB (~> 2.5)
   - iCarousel (~> 1.8.1)
-  - RFQuiltLayout (~> 1.1.1)
 
 SPEC CHECKSUMS:
   FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
   iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
-  RFQuiltLayout: 117596a16f64342be035bc4544ebdcaa2abe761b
 
 COCOAPODS: 0.35.0
