@@ -8,6 +8,7 @@
 
 #import "PicManagerViewController.h"
 #import "PicCollectionViewCell.h"
+#import "UIImage+Cut.h"
 
 @interface PicManagerViewController ()
 
@@ -40,9 +41,21 @@
     UIBarButtonItem *deleteBarBtn=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deletePicture)];
     self.navigationItem.rightBarButtonItem=deleteBarBtn;
 
-    for (int i=0; i<30; i++) {
-        [self.picArrayM addObject:[NSString stringWithFormat:@"%d.jpg",i]];
-    }
+//    for (int i=0; i<30; i++) {
+//        [self.picArrayM addObject:[NSString stringWithFormat:@"%d.jpg",i]];
+//    }
+    
+    NSString *userPicPath=[NSTemporaryDirectory() stringByAppendingPathComponent:@"userPic"];
+    NSArray *picUserArray= [[NSFileManager defaultManager] contentsOfDirectoryAtPath:userPicPath error:nil];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF ENDSWITH[cd] 'png' or SELF ENDSWITH[cd] 'jpg'"];
+    picUserArray= [picUserArray filteredArrayUsingPredicate:predicate];
+    
+    _picArrayM=[[NSMutableArray alloc] initWithCapacity:0];
+    [_picArrayM addObjectsFromArray:picUserArray];
+    
+    
+    NSArray *picNamesArray= [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"photos"] error:nil];
+    [_picArrayM addObjectsFromArray:picNamesArray];
     
 }
 
@@ -95,17 +108,23 @@
 
 -(void)refreshCell:(PicCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.image=[UIImage imageNamed:_picArrayM[indexPath.row]];
-    NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
-    id value= [_selectedDic objectForKey:key];
-    if (value!=nil && [value boolValue]==YES) {
-        cell.checked=YES;
+    @autoreleasepool {
+        NSString *filePath= [[NSBundle mainBundle].resourcePath stringByAppendingString:[NSString stringWithFormat:@"/photos/%@",_picArrayM[indexPath.row]]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]==NO) {
+            filePath=[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"/userPic/%@",_picArrayM[indexPath.row]]];
+        }
+        UIImage *image= [[UIImage alloc] initWithContentsOfFile:filePath];
+//        image=[image clipImageWithScaleWithsize:CGSizeMake(100, 100)];
+        cell.image=image;
+        NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
+        id value= [_selectedDic objectForKey:key];
+        if (value!=nil && [value boolValue]==YES) {
+            cell.checked=YES;
+        }
+        else {
+            cell.checked=NO;
+        }
     }
-    else {
-        cell.checked=NO;
-    }
-    [cell.contentView setBackgroundColor:[UIColor blueColor]];
-    [cell setBackgroundColor:[UIColor redColor]];
 }
 
 #pragma mark - UICollectionViewDelegate

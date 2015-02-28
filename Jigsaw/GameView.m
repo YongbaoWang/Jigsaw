@@ -18,7 +18,11 @@
     _splitViewArrayM=[[NSMutableArray alloc] initWithCapacity:0];
     
     UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
-    [imageView setImage:[UIImage imageNamed:_picName]];
+    NSString *filePath= [[NSBundle mainBundle].resourcePath stringByAppendingString:[NSString stringWithFormat:@"/photos/%@",_picName]];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]==NO) {
+        filePath=[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"/userPic/%@",_picName]];
+    }
+    [imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
     
     NSInteger labelWidth=rect.size.width/3;
     NSInteger labelHeight=rect.size.height/3;

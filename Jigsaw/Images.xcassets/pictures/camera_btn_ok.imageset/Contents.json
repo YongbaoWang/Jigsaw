@@ -3,15 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "c.png"
+      "filename" : "camera_btn_ok.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "2x",
+      "filename" : "camera_btn_ok@2x.png"
     }
   ],
   "info" : {

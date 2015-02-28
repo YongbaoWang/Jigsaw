@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
+#import "CustomImagePickerController.h"
+#import "ImageFilterProcessViewController.h"
 
-@interface MainViewController : UIViewController<UIActionSheetDelegate>
+@interface MainViewController : UIViewController<UIActionSheetDelegate,CustomImagePickerControllerDelegate,ImageFitlerProcessDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *toolBg;
 @property (strong, nonatomic) IBOutlet iCarousel *picCarousel;

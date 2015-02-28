@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView appearanceType="aqua" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="peU-Aa-U5i">
+                <collectionView appearanceType="aqua" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="peU-Aa-U5i">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SfZ-2i-BrL">
@@ -29,6 +29,12 @@
                 </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="peU-Aa-U5i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="43K-a2-gh2"/>
+                <constraint firstAttribute="bottom" secondItem="peU-Aa-U5i" secondAttribute="bottom" id="9aW-h3-OE7"/>
+                <constraint firstItem="peU-Aa-U5i" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QKs-S8-4qi"/>
+                <constraint firstAttribute="trailing" secondItem="peU-Aa-U5i" secondAttribute="trailing" id="kZe-zO-Cik"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

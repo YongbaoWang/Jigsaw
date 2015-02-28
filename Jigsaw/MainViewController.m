@@ -31,8 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
     [self initView];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,10 +91,19 @@
     _picCarousel.dataSource=self;
     
     _picCarousel.type=iCarouselTypeCoverFlow;
-    _picArrayM=[[NSMutableArray alloc] init];
-    for (int i=0; i<20; i++) {
-        _picArrayM[i]=[NSString stringWithFormat:@"%d",i];
-    }
+  
+    NSString *userPicPath=[NSTemporaryDirectory() stringByAppendingPathComponent:@"userPic"];
+    NSArray *picUserArray= [[NSFileManager defaultManager] contentsOfDirectoryAtPath:userPicPath error:nil];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF ENDSWITH[cd] 'png' or SELF ENDSWITH[cd] 'jpg'"];
+    picUserArray= [picUserArray filteredArrayUsingPredicate:predicate];
+    
+    _picArrayM=[[NSMutableArray alloc] initWithCapacity:0];
+    [_picArrayM addObjectsFromArray:picUserArray];
+
+    
+    NSArray *picNamesArray= [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"photos"] error:nil];
+    [_picArrayM addObjectsFromArray:picNamesArray];
+    
     [_picCarousel reloadData];
     _picCarousel.currentItemIndex=0;
 }
@@ -106,25 +116,46 @@
 
 -(void)cameraAction:(id)sender
 {
-    UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeCamera;
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+    CustomImagePickerController *picker = [[CustomImagePickerController alloc] init];
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    }else{
+        [picker setIsSingle:YES];
+        [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     }
-    UIImagePickerController * picker = [[UIImagePickerController alloc]init];
-    picker.delegate = self;
-    picker.allowsEditing=YES;
-    picker.sourceType=sourceType;
+    [picker setCustomDelegate:self];
     [self presentViewController:picker animated:YES completion:nil];
 }
 
--(void)selectPicture:(UIImage *)image
+- (void)cameraPhoto:(UIImage *)image  //选择完图片
 {
+    ImageFilterProcessViewController *fitler = [[ImageFilterProcessViewController alloc] init];
+    [fitler setDelegate:self];
+    fitler.currentImage = image;
+    [self presentViewController:fitler animated:YES completion:nil];
+}
+
+- (void)imageFitlerProcessDone:(UIImage *)image //图片处理完
+{
+    NSDate *date=[NSDate new];
+    NSTimeInterval interval=[date timeIntervalSince1970];
+    NSString *path=[NSTemporaryDirectory() stringByAppendingPathComponent:@"userPic"];
     
+    NSString *fileName=[NSString stringWithFormat:@"%ld.png",(long)interval];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSString *filePath=[path stringByAppendingPathComponent:fileName];
+    NSData *imageData= UIImagePNGRepresentation(image);
+    [imageData writeToFile:filePath atomically:YES];
+
+    [_picArrayM insertObject:fileName atIndex:0];
+    [_picCarousel reloadData];
 }
 
 -(void)changePicBrowseStyle
 {
-
     UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@"请选择图片浏览模式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"Linear",@"Rotary",@"InvertedRotary",@"Cylinder",@"InvertedCylinder",@"Wheel",@"InvertedWheel",@"CoverFlow",@"CoverFlow2",@"TimeMachine",@"InvertedTimeMachine", nil];
     [actionSheet showInView:self.view];
 }
@@ -141,8 +172,14 @@
         view=[[UIImageView alloc] init];
         view.frame=CGRectMake(0, 0, carousel.frame.size.width-100, carousel.frame.size.height-20);
     }
-    UIImage *image=[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",_picArrayM[index]]];
-    ((UIImageView *)view).image=image;
+    
+    @autoreleasepool {
+        NSString *filePath= [[NSBundle mainBundle].resourcePath stringByAppendingString:[NSString stringWithFormat:@"/photos/%@",_picArrayM[index]]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]==NO) {
+            filePath=[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"/userPic/%@",_picArrayM[index]]];
+        }
+        ((UIImageView *)view).image=[[UIImage alloc] initWithContentsOfFile:filePath];
+    }
     
     return view;
 }
@@ -157,27 +194,15 @@
 {
     NSLog(@"%d",index);
     GameViewController *gameBoardVC=[[GameViewController alloc] init];
-    gameBoardVC.picName=[NSString stringWithFormat:@"%d.jpg",index];
+    gameBoardVC.picName=_picArrayM[index];
     [self.navigationController pushViewController:gameBoardVC animated:YES];
-}
-
-#pragma mark - UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:^{
-        UIImage * image=[info objectForKey:UIImagePickerControllerEditedImage];
-        [self selectPicture:image];
-    }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    _picCarousel.type=buttonIndex;
+    if (buttonIndex!=11) {
+        _picCarousel.type=buttonIndex;
+    }
 }
 @end
