@@ -162,6 +162,7 @@
             else if(indexPath.row==1) //图片管理
             {
                 PicManagerViewController *picManaVC=[[PicManagerViewController alloc] init];
+                picManaVC.imageMemoryPool=self.imageMemoryPool;
                 [self.navigationController pushViewController:picManaVC animated:YES];
                 
             }

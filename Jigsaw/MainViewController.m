@@ -15,6 +15,9 @@
 {
     NSMutableArray *_picArrayM;
 }
+
+@property(nonatomic,strong)NSMutableDictionary *imageMemoryPool ;
+
 @end
 
 @implementation MainViewController
@@ -39,7 +42,17 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    //收到内存警告时，释放图片缓存池
+    [self.imageMemoryPool removeAllObjects];
+}
+
+#pragma mark - lazy loading
+-(NSMutableDictionary *)imageMemoryPool
+{
+    if (_imageMemoryPool==nil) {
+        _imageMemoryPool=[[NSMutableDictionary alloc] initWithCapacity:0];
+    }
+    return _imageMemoryPool;
 }
 
 -(void)initView
@@ -111,6 +124,7 @@
 -(void)settingAction:(id)sender
 {
     SettingViewController *settingVC=[[SettingViewController alloc] init];
+    settingVC.imageMemoryPool=self.imageMemoryPool;
     [self.navigationController pushViewController:settingVC animated:YES];
 }
 
@@ -172,13 +186,19 @@
         view=[[UIImageView alloc] init];
         view.frame=CGRectMake(0, 0, carousel.frame.size.width-100, carousel.frame.size.height-20);
     }
-    
-    @autoreleasepool {
+    NSNumber *key= [NSNumber numberWithInteger:index];
+    if(self.imageMemoryPool[key] !=nil )
+    {
+        ((UIImageView *)view).image=self.imageMemoryPool[key];
+    }
+    else {
         NSString *filePath= [[NSBundle mainBundle].resourcePath stringByAppendingString:[NSString stringWithFormat:@"/photos/%@",_picArrayM[index]]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]==NO) {
             filePath=[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"/userPic/%@",_picArrayM[index]]];
         }
-        ((UIImageView *)view).image=[[UIImage alloc] initWithContentsOfFile:filePath];
+        UIImage *image=[[UIImage alloc] initWithContentsOfFile:filePath];
+        ((UIImageView *)view).image=image;
+        self.imageMemoryPool[key]=image;
     }
     
     return view;

@@ -10,6 +10,7 @@
 #import "UIView+CaptureView.h"
 #import "SplitLabel.h"
 #import "SplitView.h"
+#import "UIImage+Cut.h"
 
 @implementation GameView
 
@@ -22,7 +23,9 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]==NO) {
         filePath=[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"/userPic/%@",_picName]];
     }
-    [imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
+    UIImage *image=[UIImage imageWithContentsOfFile:filePath];
+    image=[image clipImageWithScaleWithsize:CGSizeMake(290, 290)];
+    [imageView setImage:image];
     
     NSInteger labelWidth=rect.size.width/3;
     NSInteger labelHeight=rect.size.height/3;

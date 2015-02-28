@@ -70,6 +70,9 @@
     NSArray *deleteIndex=[_selectedDic allKeys];
     for (NSString *picIndex in deleteIndex) {
         [_picArrayM removeObjectAtIndex:picIndex.integerValue];
+        NSNumber *key=[NSNumber numberWithInteger:picIndex.integerValue];
+#warning 删除的图片不对,  写个例子，来验证一下数组和字段，删除后，各个元素的排列顺序。
+        [self.imageMemoryPool removeObjectForKey:key];
     }
     [_selectedDic removeAllObjects];
     [self.collectionView reloadData];
@@ -108,22 +111,28 @@
 
 -(void)refreshCell:(PicCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    @autoreleasepool {
+    NSNumber *key=[NSNumber numberWithInteger:indexPath.row];
+    if (self.imageMemoryPool[key]!=nil) {
+//        cell.image=[((UIImage *)self.imageMemoryPool[key]) clipImageWithScaleWithsize:CGSizeMake(100, 100)];//影响效率
+        cell.image=self.imageMemoryPool[key];
+    }
+    else
+    {
         NSString *filePath= [[NSBundle mainBundle].resourcePath stringByAppendingString:[NSString stringWithFormat:@"/photos/%@",_picArrayM[indexPath.row]]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]==NO) {
             filePath=[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"/userPic/%@",_picArrayM[indexPath.row]]];
         }
         UIImage *image= [[UIImage alloc] initWithContentsOfFile:filePath];
-//        image=[image clipImageWithScaleWithsize:CGSizeMake(100, 100)];
+//        image=[image clipImageWithScaleWithsize:CGSizeMake(100, 100)];//影响效率
         cell.image=image;
-        NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
-        id value= [_selectedDic objectForKey:key];
-        if (value!=nil && [value boolValue]==YES) {
-            cell.checked=YES;
-        }
-        else {
-            cell.checked=NO;
-        }
+        self.imageMemoryPool[key]=image;
+    }
+    id value= self.selectedDic[key];
+    if (value!=nil && [value boolValue]==YES) {
+        cell.checked=YES;
+    }
+    else {
+        cell.checked=NO;
     }
 }
 
@@ -131,13 +140,14 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PicCollectionViewCell *cell=(PicCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    NSString *key=[NSString stringWithFormat:@"%d",indexPath.row];
-    id value= [self.selectedDic objectForKey:key];
+    NSNumber *key=[NSNumber numberWithInteger:indexPath.row];
+    id value= self.selectedDic[key];
     if (value!=nil && [value boolValue]==YES) {
         _selectedDic[key]=[NSNumber numberWithBool:NO];
         cell.checked=NO;
     }
-    else {
+    else
+    {
         _selectedDic[key]=[NSNumber numberWithBool:YES];
         cell.checked=YES;
     }

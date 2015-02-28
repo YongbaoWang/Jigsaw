@@ -16,7 +16,6 @@
     if (self) {
         UIImageView *_imageView=[[UIImageView alloc] initWithFrame:self.bounds];
         [_imageView setContentMode:UIViewContentModeScaleToFill];
-        [_imageView setBackgroundColor:[UIColor yellowColor]];
         _imageView.tag=1000;
         [self.contentView addSubview:_imageView];
         

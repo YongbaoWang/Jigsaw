@@ -11,5 +11,6 @@
 @interface PicManagerViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property(nonatomic,strong)NSMutableDictionary *imageMemoryPool ;
 
 @end

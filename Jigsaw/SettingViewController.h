@@ -12,5 +12,6 @@
 @interface SettingViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
+@property(nonatomic,strong)NSMutableDictionary *imageMemoryPool ;
 
 @end
