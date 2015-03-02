@@ -9,21 +9,31 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "SettingViewController.h"
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "UMFeedback.h"
+#import "UMOpus.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     MainViewController *mainVC=[[MainViewController alloc] init];
     UINavigationController *nav=[[UINavigationController alloc] initWithRootViewController:mainVC];
-    
-//    SettingViewController *nav=[[SettingViewController alloc] init];
     
     self.window.rootViewController=nav;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [UMSocialData setAppKey:UMengAppkey];
+    [UMFeedback setAppkey:UMengAppkey];
+#warning appid 现在使用的是流利说的，现在分享后无法返回本app 。待审核通过后，再试下
+    //设置微信AppId、appSecret，分享url
+    [UMSocialWechatHandler setWXAppId:@"wx6bf1c0f3ad66e46" appSecret:@"b96fdfe1f4fdcfe9ed23056fdbb445a1" url:@"http://www.umeng.com/social"];
+    
+    [UMOpus setAudioEnable:YES];
+    
     return YES;
 }
 
@@ -52,6 +62,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+     return  [UMSocialSnsService handleOpenURL:url];
 }
 
 @end

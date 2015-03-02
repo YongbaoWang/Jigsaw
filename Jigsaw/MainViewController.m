@@ -37,6 +37,13 @@
     
     [self initView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePicWhenNotification:) name:PicRemoveNotification object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [_picCarousel reloadData];
+    _picCarousel.currentItemIndex=0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,6 +51,18 @@
     [super didReceiveMemoryWarning];
     //收到内存警告时，释放图片缓存池
     [self.imageMemoryPool removeAllObjects];
+}
+
+-(void)dealloc
+{
+    //ARC 下，不再调用 [super dealloc]
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:PicRemoveNotification object:nil];
+
+}
+
+-(void)removePicWhenNotification:(NSNotification *)notification
+{
+    [_picArrayM removeObject:notification.object];
 }
 
 #pragma mark - lazy loading
@@ -117,8 +136,7 @@
     NSArray *picNamesArray= [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"photos"] error:nil];
     [_picArrayM addObjectsFromArray:picNamesArray];
     
-    [_picCarousel reloadData];
-    _picCarousel.currentItemIndex=0;
+
 }
 
 -(void)settingAction:(id)sender
@@ -186,7 +204,7 @@
         view=[[UIImageView alloc] init];
         view.frame=CGRectMake(0, 0, carousel.frame.size.width-100, carousel.frame.size.height-20);
     }
-    NSNumber *key= [NSNumber numberWithInteger:index];
+    NSString *key= _picArrayM[index];
     if(self.imageMemoryPool[key] !=nil )
     {
         ((UIImageView *)view).image=self.imageMemoryPool[key];

@@ -12,7 +12,7 @@
 
 @interface PicManagerViewController ()
 
-@property(nonatomic,strong)NSMutableDictionary *selectedDic;
+@property(nonatomic,strong)NSMutableArray *selectedArray;
 @property(nonatomic,strong)NSMutableArray *picArrayM;
 
 @end
@@ -63,28 +63,35 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    //收到内存警告时，释放图片缓存池
+    [self.imageMemoryPool removeAllObjects];
 }
 
 -(void)deletePicture
 {
-    NSArray *deleteIndex=[_selectedDic allKeys];
-    for (NSString *picIndex in deleteIndex) {
-        [_picArrayM removeObjectAtIndex:picIndex.integerValue];
-        NSNumber *key=[NSNumber numberWithInteger:picIndex.integerValue];
-#warning 删除的图片不对,  写个例子，来验证一下数组和字典，删除后，各个元素的排列顺序。
-        [self.imageMemoryPool removeObjectForKey:key];
+    for (NSString *picName in _selectedArray) {
+        [self.imageMemoryPool  removeObjectForKey:picName];
+        [_picArrayM removeObject:picName];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:PicRemoveNotification object:picName];
+        
+        NSString *filePath= [[NSBundle mainBundle].resourcePath stringByAppendingString:[NSString stringWithFormat:@"/photos/%@",picName]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]==NO) {
+            filePath=[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"/userPic/%@",picName]];
+        }
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
     }
-    [_selectedDic removeAllObjects];
+    [self.selectedArray removeAllObjects];
     [self.collectionView reloadData];
 }
 
 #pragma mark - lazy loading
--(NSMutableDictionary *)selectedDic
+-(NSMutableArray *)selectedArray
 {
-    if (_selectedDic==nil) {
-        _selectedDic=[[NSMutableDictionary alloc] initWithCapacity:0];
+    if (_selectedArray==nil) {
+        _selectedArray=[[NSMutableArray alloc] initWithCapacity:0];
     }
-    return _selectedDic;
+    return _selectedArray;
 }
 
 -(NSMutableArray *)picArrayM
@@ -111,7 +118,7 @@
 
 -(void)refreshCell:(PicCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSNumber *key=[NSNumber numberWithInteger:indexPath.row];
+    NSString *key=_picArrayM[indexPath.row];
     if (self.imageMemoryPool[key]!=nil) {
 //        cell.image=[((UIImage *)self.imageMemoryPool[key]) clipImageWithScaleWithsize:CGSizeMake(100, 100)];//影响效率
         cell.image=self.imageMemoryPool[key];
@@ -127,8 +134,7 @@
         cell.image=image;
         self.imageMemoryPool[key]=image;
     }
-    id value= self.selectedDic[key];
-    if (value!=nil && [value boolValue]==YES) {
+    if ([self.selectedArray containsObject:_picArrayM[indexPath.row]]) {
         cell.checked=YES;
     }
     else {
@@ -140,15 +146,15 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PicCollectionViewCell *cell=(PicCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    NSNumber *key=[NSNumber numberWithInteger:indexPath.row];
-    id value= self.selectedDic[key];
-    if (value!=nil && [value boolValue]==YES) {
-        _selectedDic[key]=[NSNumber numberWithBool:NO];
+
+    if ([self.selectedArray containsObject:_picArrayM[indexPath.row]])
+    {
+        [self.selectedArray removeObject:_picArrayM[indexPath.row]];
         cell.checked=NO;
     }
     else
     {
-        _selectedDic[key]=[NSNumber numberWithBool:YES];
+        [self.selectedArray addObject:_picArrayM[indexPath.row]];
         cell.checked=YES;
     }
 }

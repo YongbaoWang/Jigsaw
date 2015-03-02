@@ -18,9 +18,11 @@
     #define NSLogDetail(obj) {}
 #endif
 
+#define UMengAppkey @"54f40a10fd98c551d7000b42"
+
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define SystemVersion     [UIDevice currentDevice].systemVersion.floatValue
-
+#define PicRemoveNotification  @"PicRemoveNotification"
 
 #endif

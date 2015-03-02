@@ -44,7 +44,6 @@
                 splitView.btn.tag=splitView.tag;
                 [splitView setTitle:[NSString stringWithFormat:@"%d",i*3+(j+1)] ];
                 [splitView.btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-
                 [self addSubview:splitView];
                 [_splitViewArrayM addObject:splitView];
             

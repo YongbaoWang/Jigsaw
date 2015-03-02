@@ -9,6 +9,8 @@
 #import "SettingViewController.h"
 #import "DBHelper.h"
 #import "PicManagerViewController.h"
+#import "UMSocial.h"
+#import "UMFeedback.h"
 
 #define PHOTO_HEIGHT 100
 
@@ -171,11 +173,19 @@
         case 1:
         {
             if (indexPath.row==0) { //分享
-               
+                //注意：分享到微信好友、微信朋友圈、微信收藏、QQ空间、QQ好友、来往好友、来往朋友圈、易信好友、易信朋友圈、Facebook、Twitter、Instagram等平台需要参考各自的集成方法
+                //如果需要分享回调，请将delegate对象设置self，并实现下面的回调方法
+                [UMSocialSnsService presentSnsIconSheetView:self
+                                                     appKey:UMengAppkey
+                                                  shareText:@"爱拼图，↖(^ω^)↗"
+                                                 shareImage:[UIImage imageNamed:@"icon"]
+                                            shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToSms,UMShareToEmail,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil]
+                                                   delegate:nil];
             }
             else if(indexPath.row==1) //在线反馈
             {
-                
+                [self.navigationController pushViewController:[UMFeedback feedbackViewController]
+                                                     animated:YES];
                 
             }
             else if(indexPath.row==2) //检查更新

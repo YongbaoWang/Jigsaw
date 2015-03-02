@@ -199,7 +199,12 @@
     if (kGameNormal==_gameState||kGameReset==_gameState) {
         //开始游戏
         [self _outOfOrderInit];
-        [_gameView.splitViewArrayM makeObjectsPerformSelector:@selector(showTitle:) withObject:@1];
+        if (_gameLevel==kGameHard) {
+            [_gameView.splitViewArrayM makeObjectsPerformSelector:@selector(showTitle:) withObject:@0];
+        }
+        else {
+            [_gameView.splitViewArrayM makeObjectsPerformSelector:@selector(showTitle:) withObject:@1];
+        }
         
         [_stepsLbl setText:@"Your steps:0"];
         
@@ -222,7 +227,10 @@
         }
         else if(_gameLevel==kGameHard)
         {
-            
+            if (![self _isValidMove:sender.superview.tag])
+            {
+                return;
+            }
         }
         _stepsCount++;
         [_stepsLbl setText:[NSString stringWithFormat:@"Your steps:%d",_stepsCount]];
@@ -234,6 +242,12 @@
         NSInteger tag=sender.superview.tag;
         sender.superview.tag=_blankNum;
         _blankNum=tag;
+        
+        //判断是否游戏胜利
+        if ([self isSuccess]) {
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ok" message:@"shengli" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+            [alert show];
+        }
     }
 }
 
@@ -293,6 +307,21 @@
 {
     return (_blankNum-1==tag || _blankNum+1==tag ||
     _blankNum-3==tag || _blankNum+3==tag);
+}
+
+/**
+ *  判断用户是否取得胜利
+ *
+ *  @return 是否胜利
+ */
+-(BOOL)isSuccess
+{
+    for (SplitView *splitView in _gameView.subviews) {
+        if (splitView.tag!=splitView.btn.tag) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end
