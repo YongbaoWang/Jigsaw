@@ -28,9 +28,8 @@
     
     [UMSocialData setAppKey:UMengAppkey];
     [UMFeedback setAppkey:UMengAppkey];
-#warning appid 现在使用的是流利说的，现在分享后无法返回本app 。待审核通过后，再试下
     //设置微信AppId、appSecret，分享url
-    [UMSocialWechatHandler setWXAppId:@"wx6bf1c0f3ad66e46" appSecret:@"b96fdfe1f4fdcfe9ed23056fdbb445a1" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:WXAppID appSecret:WXAppSecret url:@"http://www.umeng.com/social"];
     
     [UMOpus setAudioEnable:YES];
     

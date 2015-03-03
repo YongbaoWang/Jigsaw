@@ -1,0 +1,23 @@
+/* 
+  Localization.strings
+  Jigsaw
+
+  Created by Ever on 15/3/3.
+  Copyright (c) 2015年 Ever. All rights reserved.
+*/
+
+"mainTitle"="拼图游戏";
+"startGame"="点击图片开始游戏";
+"gameLevel"="游戏难度";
+"pictureManage"="图片管理";
+"share"="分享";
+"feedback"="在线反馈";
+"checkUpdate"="检查更新";
+"donateAuthor"="赞助作者";
+"currentVersion"="当前版本:1.0.0";
+"easyMode"="简单模式";
+"mediumMode"="中等模式";
+"hardMode"="困难模式";
+"select"="请选择";
+"cancel"="取消";
+"ok"="确定";

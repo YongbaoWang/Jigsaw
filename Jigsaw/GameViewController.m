@@ -183,7 +183,7 @@
         _blankRect=_gameView.blankRect;
         _blankNum=9;
         _gameState=kGameReset;
-        [_stepsLbl setText:@"点击图片开始游戏..."];
+        [_stepsLbl setText:NSLocalizedString(@"startGame", nil)];
     }];
 
     

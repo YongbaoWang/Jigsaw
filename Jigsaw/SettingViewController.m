@@ -79,7 +79,7 @@
         case 0:
         {
             if (indexPath.row==0) { //游戏难度
-                cell.textLabel.text=@"游戏难度";
+                cell.textLabel.text=NSLocalizedString(@"gameLevel", nil);
                 NSString *text;
                 NSInteger dbLevel=[DBHelper loadGameLevel];
                 if (dbLevel==kGameEasy) {
@@ -95,31 +95,31 @@
             }
             else if(indexPath.row==1) //图片管理
             {
-                cell.textLabel.text=@"图片管理";
+                cell.textLabel.text=NSLocalizedString(@"pictureManage", nil);
             }
         }
             break;
         case 1:
         {
             if (indexPath.row==0) { //分享
-                cell.textLabel.text=@"分享";
+                cell.textLabel.text=NSLocalizedString(@"share", nil);
             }
             else if(indexPath.row==1) //在线反馈
             {
-                cell.textLabel.text=@"在线反馈";
+                cell.textLabel.text=NSLocalizedString(@"feedback", nil);
 
             }
             else if(indexPath.row==2) //检查更新
             {
-                cell.textLabel.text=@"检查更新";
-                cell.detailTextLabel.text=@"当前版本:1.0.0";
+                cell.textLabel.text=NSLocalizedString(@"checkUpdate", nil);
+                cell.detailTextLabel.text=NSLocalizedString(@"currentVersion", nil);
             }
         }
             break;
         case 2:
         {
             if (indexPath.row==0) { //赞助作者
-                cell.textLabel.text=@"赞助作者";
+                cell.textLabel.text=NSLocalizedString(@"donateAuthor", nil);
             }
         }
             break;
@@ -158,7 +158,7 @@
         case 0:
         {
             if (indexPath.row==0) { //游戏难度
-                UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"简单模式",@"一般模式",@"难度模式", nil];
+                UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"select", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"easyMode", nil),NSLocalizedString(@"mediumMode",nil),NSLocalizedString(@"hardMode",nil), nil];
                 [actionSheet showInView:self.view];
             }
             else if(indexPath.row==1) //图片管理

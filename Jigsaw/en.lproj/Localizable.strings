@@ -1,0 +1,22 @@
+/* 
+  Localization.strings
+  Jigsaw
+
+  Created by Ever on 15/3/3.
+  Copyright (c) 2015年 Ever. All rights reserved.
+*/
+"mainTitle"="JigsawGame";
+"startGame"="Tap the picture to start game";
+"gameLevel"="Game Level";
+"pictureManage"="Manage Picture";
+"share"="Share";
+"feedback"="Feedback";
+"checkUpdate"="Update Version";
+"donateAuthor"="Donate";
+"currentVersion"="Version:1.0.0";
+"easyMode"="Easy Mode";
+"mediumMode"="Medium Mode";
+"hardMode"="Hard Mode";
+"select"="Please select";
+"cancel"="Cancel";
+"ok"="OK";

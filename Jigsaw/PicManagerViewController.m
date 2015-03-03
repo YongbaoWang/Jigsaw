@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title=@"图片管理";
+    self.navigationItem.title=NSLocalizedString(@"pictureManage", nil);
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     self.collectionView.dataSource=self;
     self.collectionView.delegate=self;
