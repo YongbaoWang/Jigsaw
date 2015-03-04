@@ -75,7 +75,7 @@
             if ([rs next]) {
                 NSInteger targetTag=[rs intForColumn:GameProgress_ViewTag];
                 CGRect targetRect=CGRectFromString([rs stringForColumn:GameProgress_ViewFrame]) ;
-                NSLog(@"viewTag:%d,btnTag:%d",targetTag,splitView.btn.tag);
+                NSLog(@"viewTag:%d,btnTag:%d",(int)targetTag,(int)splitView.btn.tag);
                 [UIView animateWithDuration:0.3 animations:^{
                     splitView.frame=targetRect;
                     splitView.tag=targetTag;

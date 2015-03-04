@@ -14,6 +14,7 @@
 #import "SplitView.h"
 #import "DBHelper.h"
 #import "GameStateModel.h"
+#import "UMSocial.h"
 
 @interface GameViewController ()
 
@@ -165,7 +166,7 @@
     _blankRect=CGRectFromString(model.blankRect);
     _gameLevel=model.gameLevel;
     _stepsCount=model.gameSteps;
-    [_stepsLbl setText:[NSString stringWithFormat:@"Your steps:%d",_stepsCount]];
+    [_stepsLbl setText:[NSString stringWithFormat:@"Your steps:%d",(int)_stepsCount]];
     NSLog(@"load finish");
 }
 
@@ -233,7 +234,7 @@
             }
         }
         _stepsCount++;
-        [_stepsLbl setText:[NSString stringWithFormat:@"Your steps:%d",_stepsCount]];
+        [_stepsLbl setText:[NSString stringWithFormat:@"Your steps:%ld",(long)_stepsCount]];
         CGRect tmp=sender.superview.frame;
         [UIView animateWithDuration:0.2 animations:^{
             sender.superview.frame=_blankRect;
@@ -244,9 +245,36 @@
         _blankNum=tag;
         
         //判断是否游戏胜利
-        if ([self isSuccess]) {
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ok" message:@"shengli" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
-            [alert show];
+//        if ([self isSuccess])
+        {
+//            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ok" message:@"shengli" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+//            [alert show];
+            UIView *infoView=[[UIView alloc] init];
+            [infoView setBackgroundColor:color(255, 255, 255, 0.5)];
+            infoView.frame=_gameView.bounds;
+            [_gameView addSubview:infoView];
+            
+            UILabel *successLbl=[[UILabel alloc] initWithFrame:CGRectMake(0, 80, infoView.frame.size.width, 80)];
+            [successLbl setText:@"Success😊"];
+            [successLbl setTextAlignment:NSTextAlignmentCenter];
+            [successLbl setFont:[UIFont fontWithName:@"AmericanTypewriter" size:48.0]];
+            [successLbl setTextColor:[UIColor redColor]];
+            [infoView addSubview:successLbl];
+            
+            UIButton *shareBtn=[[UIButton alloc] init];
+            [shareBtn setTitle:NSLocalizedString(@"challengeFriend", nil) forState:UIControlStateNormal];
+            [shareBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [shareBtn.titleLabel setFont:[UIFont systemFontOfSize:26.0]];
+            [infoView addSubview:shareBtn];
+            
+            [shareBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
+            NSDictionary *shareBtnViews=NSDictionaryOfVariableBindings(infoView,shareBtn);
+            [infoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[shareBtn(120)]" options:0 metrics:0 views:shareBtnViews]];
+            [infoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[shareBtn(60)]-60-|" options:0 metrics:0 views:shareBtnViews]];
+            [infoView addConstraint:[NSLayoutConstraint constraintWithItem:shareBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:infoView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+            
+            [shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+            
         }
     }
 }
@@ -259,10 +287,10 @@
     NSMutableArray *splitViewArray=_gameView.splitViewArrayM;
     NSArray *randomArray=[self randomArray];
     for (int i=0; i<randomArray.count; i++) {
-        int transform=[randomArray[i] integerValue];
+        int transform=(int)[randomArray[i] integerValue];
         SplitView *target=(SplitView *)splitViewArray[transform];
         SplitView *origin=(SplitView *)splitViewArray[i];
-        int tag=origin.tag;
+        int tag=(int)origin.tag;
         origin.tag=target.tag;
         target.tag=tag;
         
@@ -322,6 +350,20 @@
         }
     }
     return YES;
+}
+
+-(void)shareAction:(UIButton *)sender
+{
+    //注意：分享到微信好友、微信朋友圈、微信收藏、QQ空间、QQ好友、来往好友、来往朋友圈、易信好友、易信朋友圈、Facebook、Twitter、Instagram等平台需要参考各自的集成方法
+    //如果需要分享回调，请将delegate对象设置self，并实现下面的回调方法
+    
+    NSString *shareText=[NSString stringWithFormat:NSLocalizedString(@"shareGameText%d", nil),_stepsCount];
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:UMengAppkey
+                                      shareText:shareText
+                                     shareImage:[UIImage imageNamed:@"icon"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToSms,UMShareToEmail,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil]
+                                       delegate:nil];
 }
 
 @end

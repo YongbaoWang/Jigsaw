@@ -40,10 +40,6 @@
     
     UIBarButtonItem *deleteBarBtn=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deletePicture)];
     self.navigationItem.rightBarButtonItem=deleteBarBtn;
-
-//    for (int i=0; i<30; i++) {
-//        [self.picArrayM addObject:[NSString stringWithFormat:@"%d.jpg",i]];
-//    }
     
     NSString *userPicPath=[NSTemporaryDirectory() stringByAppendingPathComponent:@"userPic"];
     NSArray *picUserArray= [[NSFileManager defaultManager] contentsOfDirectoryAtPath:userPicPath error:nil];

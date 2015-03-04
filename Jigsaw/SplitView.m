@@ -52,7 +52,7 @@
         [_btn setTitle:@"" forState:UIControlStateNormal];
     }
     else {
-        [_btn setTitle:[NSString stringWithFormat:@"%d",_btn.tag] forState:UIControlStateNormal];
+        [_btn setTitle:[NSString stringWithFormat:@"%d",(int)_btn.tag] forState:UIControlStateNormal];
     }
 }
 

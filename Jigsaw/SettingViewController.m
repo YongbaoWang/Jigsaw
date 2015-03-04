@@ -210,7 +210,6 @@
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"%d",buttonIndex);
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell *cell=[_myTableView cellForRowAtIndexPath:indexPath];
     GameLevel gameLevel;

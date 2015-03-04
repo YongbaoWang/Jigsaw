@@ -230,7 +230,6 @@
 #pragma mark - iCarouselDelegate
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    NSLog(@"%d",index);
     GameViewController *gameBoardVC=[[GameViewController alloc] init];
     gameBoardVC.picName=_picArrayM[index];
     [self.navigationController pushViewController:gameBoardVC animated:YES];

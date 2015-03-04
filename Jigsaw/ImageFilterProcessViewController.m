@@ -105,7 +105,7 @@
 
 - (IBAction)setImageStyle:(UITapGestureRecognizer *)sender
 {
-    UIImage *image =   [self changeImage:sender.view.tag imageView:nil];
+    UIImage *image =   [self changeImage:(int)sender.view.tag imageView:nil];
     [rootImageView setImage:image];
 }
 - (void)didReceiveMemoryWarning
