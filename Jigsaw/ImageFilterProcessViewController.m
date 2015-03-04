@@ -56,7 +56,7 @@
     [self.view addSubview:rootImageView];
     
     NSArray *arr = [NSArray arrayWithObjects:@"原图",@"LOMO",@"黑白",@"复古",@"哥特",@"锐色",@"淡雅",@"酒红",@"青柠",@"浪漫",@"光晕",@"蓝调",@"梦幻",@"夜色", nil];
-    scrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, ScreenHeight - 80, 320, 80)];
+    scrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, ScreenHeightWithCamera - 80, 320, 80)];
     scrollerView.backgroundColor = [UIColor clearColor];
     scrollerView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     scrollerView.showsHorizontalScrollIndicator = NO;

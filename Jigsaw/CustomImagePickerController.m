@@ -67,7 +67,7 @@
         
         [self setShowsCameraControls:NO];
         
-        UIView *overlyView = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeight - 34, 320, 44)];
+        UIView *overlyView = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeightWithCamera - 34, 320, 44)];
         [overlyView setBackgroundColor:[UIColor clearColor]];
         
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];

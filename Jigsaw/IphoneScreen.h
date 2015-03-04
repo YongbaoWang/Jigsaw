@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #define IS_IPHONE5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
-//#define ScreenHeight (IS_IPHONE5 ? 548.0 : 460.0)
+#define ScreenHeightWithCamera (IS_IPHONE5 ? 548.0 : 460.0)
 
 @interface IphoneScreen : NSObject
  
