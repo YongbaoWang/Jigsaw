@@ -87,14 +87,14 @@
     UIBarButtonItem *cameraBtn=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(cameraAction:)];
     self.navigationItem.leftBarButtonItem=cameraBtn;
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor grayColor]];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor grayColor]];
     
     [_picCarousel setHidden:NO];
     if (SystemVersion>=7.0) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]];
-    [self.toolBg setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]];
+    [self.view setBackgroundColor:color(232, 232, 232, 1)];
+    [self.toolBg setBackgroundColor:color(232, 232, 232, 1)];
     
     UILabel *label=[[UILabel alloc] init];
     [label setTextAlignment:NSTextAlignmentCenter];
