@@ -56,6 +56,8 @@
 		1D56B02D1AA4643D001274ED /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D56B02C1AA4643D001274ED /* libstdc++.dylib */; };
 		1D56B02F1AA4644A001274ED /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D56B02E1AA4644A001274ED /* libz.dylib */; };
 		1D65EB0B1A823BEA001DA771 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65EB0A1A823BEA001DA771 /* DBHelper.m */; };
+		1D6D823F1AA82FED0066EBC8 /* OnlinePicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6D823D1AA82FED0066EBC8 /* OnlinePicViewController.m */; };
+		1D6D82401AA82FED0066EBC8 /* OnlinePicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6D823E1AA82FED0066EBC8 /* OnlinePicViewController.xib */; };
 		1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */; };
 		1D80D28D1AA172A50053546F /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D80D28A1AA172A50053546F /* CustomImagePickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1D80D28E1AA172A50053546F /* ImageFilterProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D80D28C1AA172A50053546F /* ImageFilterProcessViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -182,6 +184,10 @@
 		1D65EB091A823BEA001DA771 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		1D65EB0A1A823BEA001DA771 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		1D65EB0C1A824890001DA771 /* DatabaseMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseMacro.h; sourceTree = "<group>"; };
+		1D6D823B1AA82DF60066EBC8 /* TagMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagMacro.h; sourceTree = "<group>"; };
+		1D6D823C1AA82FED0066EBC8 /* OnlinePicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlinePicViewController.h; sourceTree = "<group>"; };
+		1D6D823D1AA82FED0066EBC8 /* OnlinePicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlinePicViewController.m; sourceTree = "<group>"; };
+		1D6D823E1AA82FED0066EBC8 /* OnlinePicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlinePicViewController.xib; sourceTree = "<group>"; };
 		1D7A4B8E1A7CE84C0038EFAD /* UIView+CaptureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CaptureView.h"; sourceTree = "<group>"; };
 		1D7A4B8F1A7CE84C0038EFAD /* UIView+CaptureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CaptureView.m"; sourceTree = "<group>"; };
 		1D80D2891AA172A50053546F /* CustomImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImagePickerController.h; sourceTree = "<group>"; };
@@ -290,6 +296,7 @@
 				1D11EDD71A7F2FB300425575 /* ViewMacro.h */,
 				1D65EB0C1A824890001DA771 /* DatabaseMacro.h */,
 				1D8F193F1A9EEBD900524402 /* Enum.h */,
+				1D6D823B1AA82DF60066EBC8 /* TagMacro.h */,
 			);
 			name = Macro;
 			sourceTree = "<group>";
@@ -597,6 +604,9 @@
 				1D80D28A1AA172A50053546F /* CustomImagePickerController.m */,
 				1D80D28B1AA172A50053546F /* ImageFilterProcessViewController.h */,
 				1D80D28C1AA172A50053546F /* ImageFilterProcessViewController.m */,
+				1D6D823C1AA82FED0066EBC8 /* OnlinePicViewController.h */,
+				1D6D823D1AA82FED0066EBC8 /* OnlinePicViewController.m */,
+				1D6D823E1AA82FED0066EBC8 /* OnlinePicViewController.xib */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -769,6 +779,7 @@
 				1D8529741AA476C1008ED393 /* bubble_min@2x.png in Resources */,
 				1D85297E1AA476C1008ED393 /* umeng_fb_audio_play_01@2x.png in Resources */,
 				1D8529791AA476C1008ED393 /* ToolViewInputTextHL@2x.png in Resources */,
+				1D6D82401AA82FED0066EBC8 /* OnlinePicViewController.xib in Resources */,
 				1D8529761AA476C1008ED393 /* microphone@2x.png in Resources */,
 				1D56B00C1AA443D7001274ED /* UMSocialSDKResourcesNew.bundle in Resources */,
 				1D85297F1AA476C1008ED393 /* umeng_fb_audio_play_02@2x.png in Resources */,
@@ -838,6 +849,7 @@
 				1D11EDD51A7F2E7100425575 /* PicTableViewCell.m in Sources */,
 				1D7A4B901A7CE84C0038EFAD /* UIView+CaptureView.m in Sources */,
 				1D80D2A41AA173E80053546F /* UIImage+SplitImageIntoTwoParts.m in Sources */,
+				1D6D823F1AA82FED0066EBC8 /* OnlinePicViewController.m in Sources */,
 				1D80D2951AA173600053546F /* IphoneScreen.m in Sources */,
 				1D17EEBF1A7CD82900C3D8C7 /* MainViewController.m in Sources */,
 				1D8F19431A9F099D00524402 /* PicManagerViewController.m in Sources */,

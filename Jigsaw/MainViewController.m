@@ -10,6 +10,8 @@
 #import "ViewMacro.h"
 #import "PicTableViewCell.h"
 #import "GameViewController.h"
+#import "TagMacro.h"
+#import "OnlinePicViewController.h"
 
 @interface MainViewController ()<iCarouselDataSource,iCarouselDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
@@ -111,12 +113,13 @@
     
     
     UIButton *picStyleBtn=[[UIButton alloc] init];
-    [picStyleBtn setBackgroundImage:[UIImage imageNamed:@"style"] forState:UIControlStateNormal] ;
+    [picStyleBtn setImage:[UIImage imageNamed:@"style"] forState:UIControlStateNormal] ;
+    [picStyleBtn setContentMode:UIViewContentModeScaleAspectFit];
     [_toolBg addSubview:picStyleBtn];
     [picStyleBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
     NSDictionary *picStyleDic=NSDictionaryOfVariableBindings(_toolBg,picStyleBtn);
-    [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[picStyleBtn(30)]-8-|" options:0 metrics:0 views:picStyleDic]];
-    [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[picStyleBtn(30)]-5-|" options:0 metrics:0 views:picStyleDic]];
+    [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[picStyleBtn(40)]-8-|" options:0 metrics:0 views:picStyleDic]];
+    [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[picStyleBtn(40)]-2-|" options:0 metrics:0 views:picStyleDic]];
     [picStyleBtn addTarget:self action:@selector(changePicBrowseStyle) forControlEvents:UIControlEventTouchUpInside];
     
     _picCarousel.delegate=self;
@@ -148,15 +151,9 @@
 
 -(void)cameraAction:(id)sender
 {
-    CustomImagePickerController *picker = [[CustomImagePickerController alloc] init];
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    }else{
-        [picker setIsSingle:YES];
-        [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    }
-    [picker setCustomDelegate:self];
-    [self presentViewController:picker animated:YES completion:nil];
+    UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"select", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"camera", nil),NSLocalizedString(@"browser", nil), nil];
+    sheet.tag=kTagCameraBrower;
+    [sheet showInView:self.view];
 }
 
 - (void)cameraPhoto:(UIImage *)image  //选择完图片
@@ -188,7 +185,8 @@
 
 -(void)changePicBrowseStyle
 {
-    UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@"请选择图片浏览模式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"Linear",@"Rotary",@"InvertedRotary",@"Cylinder",@"InvertedCylinder",@"Wheel",@"InvertedWheel",@"CoverFlow",@"CoverFlow2",@"TimeMachine",@"InvertedTimeMachine", nil];
+    UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"selectPicStyle", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Linear",@"Rotary",@"InvertedRotary",@"Cylinder",@"InvertedCylinder",@"Wheel",@"InvertedWheel",@"CoverFlow",@"CoverFlow2",@"TimeMachine",@"InvertedTimeMachine", nil];
+    actionSheet.tag=kTagPicStyle;
     [actionSheet showInView:self.view];
 }
 
@@ -238,8 +236,30 @@
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex!=11) {
-        _picCarousel.type=buttonIndex;
+    if (actionSheet.tag==kTagPicStyle) {
+        if (buttonIndex!=11) {
+            _picCarousel.type=buttonIndex;
+        }
     }
+    else if(actionSheet.tag==kTagCameraBrower)
+    {
+        if (buttonIndex==0) { //camera
+            CustomImagePickerController *picker = [[CustomImagePickerController alloc] init];
+            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+                [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            }else{
+                [picker setIsSingle:YES];
+                [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            }
+            [picker setCustomDelegate:self];
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+        else if(buttonIndex==1) //online picture
+        {
+            OnlinePicViewController *onlineVC=[[OnlinePicViewController alloc] init];
+            [self.navigationController pushViewController:onlineVC animated:YES];
+        }
+    }
+
 }
 @end

@@ -13,7 +13,7 @@
 "share"="分享";
 "feedback"="在线反馈";
 "checkUpdate"="检查更新";
-"donateAuthor"="赞助作者";
+"donateAuthor"="作者";
 "currentVersion"="当前版本:1.0.0";
 "easyMode"="简单模式";
 "mediumMode"="中等模式";
@@ -23,3 +23,7 @@
 "ok"="确定";
 "challengeFriend"="挑逗好友";
 "shareGameText%d"="我的style,%d步成功闯关，智商爆表，有木有！";
+"noNewVersion"="没有新版本";
+"camera"="相机图片";
+"browser"="在线图片";
+"selectPicStyle"="请选择图片浏览模式";

@@ -175,9 +175,10 @@
             if (indexPath.row==0) { //分享
                 //注意：分享到微信好友、微信朋友圈、微信收藏、QQ空间、QQ好友、来往好友、来往朋友圈、易信好友、易信朋友圈、Facebook、Twitter、Instagram等平台需要参考各自的集成方法
                 //如果需要分享回调，请将delegate对象设置self，并实现下面的回调方法
+                NSString *shareText=[NSString stringWithFormat:NSLocalizedString(@"shareGameText%d", nil),6];
                 [UMSocialSnsService presentSnsIconSheetView:self
                                                      appKey:UMengAppkey
-                                                  shareText:@"爱拼图，↖(^ω^)↗"
+                                                  shareText:shareText
                                                  shareImage:[UIImage imageNamed:@"icon"]
                                             shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToSms,UMShareToEmail,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil]
                                                    delegate:nil];
@@ -190,7 +191,9 @@
             }
             else if(indexPath.row==2) //检查更新
             {
-               
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Msg" message:NSLocalizedString(@"noNewVersion", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"ok", nil), nil];
+                [alert show];
+                
             }
         }
             break;

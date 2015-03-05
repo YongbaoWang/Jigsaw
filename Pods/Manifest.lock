@@ -5,13 +5,16 @@ PODS:
   - FMDB/standard (2.5):
     - FMDB/common
   - iCarousel (1.8.1)
+  - MBProgressHUD (0.9)
 
 DEPENDENCIES:
   - FMDB (~> 2.5)
   - iCarousel (~> 1.8.1)
+  - MBProgressHUD (~> 0.9)
 
 SPEC CHECKSUMS:
   FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
   iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
 
 COCOAPODS: 0.35.0
