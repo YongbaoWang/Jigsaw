@@ -15,7 +15,7 @@
     #define NSLogViewHierarchy(obj)   NSLog(@"recursivecDescription:\n%@",[obj performSelector:@selector(recursiveDescription)])
 #else
     #define NSLog(...) {}
-    #define NSLogDetail(obj) {}
+    #define NSLogViewHierarchy(obj) {}
 #endif
 
 #define UMengAppkey @"54f40a10fd98c551d7000b42"
