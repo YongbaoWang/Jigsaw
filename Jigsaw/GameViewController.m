@@ -61,7 +61,7 @@
 {
     _gameState=kGameNormal;
     
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_game"]]];
+    [self.view setBackgroundColor:color(232, 232, 232, 1)];
     
     UIButton *backBtn=[self createToolBtnWithTitle:@"Back"];
     UIButton *saveBtn=[self createToolBtnWithTitle:@"Save"];
@@ -245,7 +245,7 @@
         _blankNum=tag;
         
         //判断是否游戏胜利
-//        if ([self isSuccess])
+        if ([self isSuccess])
         {
 //            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ok" message:@"shengli" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
 //            [alert show];
