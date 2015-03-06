@@ -26,5 +26,7 @@
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define SystemVersion     [UIDevice currentDevice].systemVersion.floatValue
 #define PicRemoveNotification  @"PicRemoveNotification"
+#define PicAddNotification  @"PicAddNotification"
+
 
 #endif

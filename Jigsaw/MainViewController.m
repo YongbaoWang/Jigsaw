@@ -40,6 +40,7 @@
     [self initView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePicWhenNotification:) name:PicRemoveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPicWhenNotification:) name:PicAddNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -59,12 +60,21 @@
 {
     //ARC 下，不再调用 [super dealloc]
     [[NSNotificationCenter defaultCenter] removeObserver:self name:PicRemoveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:PicAddNotification object:nil];
+
 
 }
 
+#pragma mark - NSNotificationCenter Method
 -(void)removePicWhenNotification:(NSNotification *)notification
 {
     [_picArrayM removeObject:notification.object];
+}
+
+-(void)addPicWhenNotification:(NSNotification *)notification
+{
+    [_picArrayM insertObject:notification.object atIndex:0];
+    [_picCarousel reloadData];
 }
 
 #pragma mark - lazy loading

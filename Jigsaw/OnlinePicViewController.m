@@ -10,6 +10,9 @@
 #import "MBProgressHUD.h"
 
 @interface OnlinePicViewController ()
+{
+    NSTimer *timer;
+}
 
 @property(nonatomic,strong)NSMutableData *urlData ;
 
@@ -32,7 +35,7 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://image.baidu.com/"]];
+    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://image.baidu.com/i?tn=wiseala&ie=utf8&word=%E6%89%8B%E6%9C%BA%E5%A3%81%E7%BA%B8&fmpage=index&from=index&pos=magic"]];
     [self.picWebView loadRequest:request];
 }
 
@@ -40,6 +43,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc
+{
+    [timer invalidate];
+    timer=nil;
 }
 
 #pragma mrak - lozy loading
@@ -70,24 +79,79 @@
 }
 
 - (IBAction)loadPicAction:(id)sender {
-    NSLog(@"url:%@",self.picWebView.request.URL);
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSString *imgUrl= [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('vivid')[0].src;"];
+    NSString *imgUrl2= [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('vivid')[1].src;"];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSData *data=[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]];
+        [self savePhoto:data];
+        if (![imgUrl isEqualToString:imgUrl2]) {
+            NSData *data2=[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl2]];
+            [self savePhoto:data2];
+        }
+        [self performSelectorOnMainThread:@selector(backMainWhenLoadedImg) withObject:nil waitUntilDone:YES];
+
+    });
+    NSLog(@"url:%@",imgUrl);
+}
+
+-(void)backMainWhenLoadedImg
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)savePhoto:(NSData *)imgData
+{
+    NSDate *date=[NSDate new];
+    NSTimeInterval interval=[date timeIntervalSince1970];
+    NSString *path=[NSTemporaryDirectory() stringByAppendingPathComponent:@"userPic"];
+    
+    NSString *fileName=[NSString stringWithFormat:@"%ld.png",(long)interval];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSString *filePath=[path stringByAppendingPathComponent:fileName];
+    [imgData writeToFile:filePath atomically:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PicAddNotification object:fileName];
+}
+
+-(void)filterHTML
+{
+    [self.picWebView stringByEvaluatingJavaScriptFromString:@"var arr=document.getElementsByClassName('nav'); for(i=0;i<arr.length;i++){arr[i].style.display='none'}"];
+    [self.picWebView stringByEvaluatingJavaScriptFromString:@"var arr=document.getElementsByClassName('searchBox'); for(i=0;i<arr.length;i++){arr[i].style.display='none'}"];
+    [self.picWebView stringByEvaluatingJavaScriptFromString:@"var arr=document.getElementsByClassName('nav-cls'); for(i=0;i<arr.length;i++){arr[i].style.display='none'}"];
+    [self.picWebView stringByEvaluatingJavaScriptFromString:@"var arr=document.getElementsByClassName('footer'); for(i=0;i<arr.length;i++){arr[i].style.display='none'}"];
+    [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.getElementById('topRsQuery').style.display='none';"];
+    [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.getElementById('rsQuery').style.display='none';"];
+    [self.picWebView stringByEvaluatingJavaScriptFromString:@"var tool=document.getElementById('infoBar');tool.parentNode.removeChild(tool);"];
 }
 
 #pragma mark - UIWebViewDelegate
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self filterHTML];
 }
 
-//#pragma mark - UIWebViewDelegate
-//- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-//{
-//    if (navigationType==UIWebViewNavigationTypeLinkClicked) {
-//        [self loadRequest:request];
-//        return NO;
-//    }
-//    return YES;
-//}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self filterHTML];
+    timer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(filterHTML) userInfo:nil repeats:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    NSString *html= [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML;"];
+    NSLog(@"%@",html);
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    [timer invalidate];
+    timer=nil;
+    return YES;
+}
 //
 //#pragma mark - load HTML
 //-(void)loadRequest:(NSURLRequest *)request
