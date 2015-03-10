@@ -68,6 +68,7 @@
 		1D80D2A21AA173E80053546F /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D80D29B1AA173E80053546F /* UIImage+Resize.m */; };
 		1D80D2A31AA173E80053546F /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D80D29D1AA173E80053546F /* UIImage+RoundedCorner.m */; };
 		1D80D2A41AA173E80053546F /* UIImage+SplitImageIntoTwoParts.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D80D29F1AA173E80053546F /* UIImage+SplitImageIntoTwoParts.m */; };
+		1D8215FB1AAED7E800D02D97 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 1D8215FA1AAED7E800D02D97 /* audio */; };
 		1D8529581AA47265008ED393 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D8529571AA47265008ED393 /* AVFoundation.framework */; };
 		1D8529721AA476C0008ED393 /* UMFeedbackLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D85295A1AA476C0008ED393 /* UMFeedbackLocalizable.strings */; };
 		1D8529731AA476C0008ED393 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D85295C1AA476C0008ED393 /* libUMFeedback.a */; };
@@ -209,6 +210,7 @@
 		1D80D29D1AA173E80053546F /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		1D80D29E1AA173E80053546F /* UIImage+SplitImageIntoTwoParts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SplitImageIntoTwoParts.h"; sourceTree = "<group>"; };
 		1D80D29F1AA173E80053546F /* UIImage+SplitImageIntoTwoParts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SplitImageIntoTwoParts.m"; sourceTree = "<group>"; };
+		1D8215FA1AAED7E800D02D97 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		1D8529571AA47265008ED393 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1D85295B1AA476C0008ED393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/UMFeedbackLocalizable.strings; sourceTree = "<group>"; };
 		1D85295C1AA476C0008ED393 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 		1D17EE8B1A7CD6E300C3D8C7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1D8215FA1AAED7E800D02D97 /* audio */,
 				1D02231C1AA1BA4C009FE3EC /* photos */,
 				1D17EE961A7CD6E300C3D8C7 /* Images.xcassets */,
 				1D17EE8C1A7CD6E300C3D8C7 /* Jigsaw-Info.plist */,
@@ -754,6 +757,7 @@
 				1D56B0041AA443D7001274ED /* UMSCommentDetailController.xib in Resources */,
 				1D02231D1AA1BA4C009FE3EC /* photos in Resources */,
 				1D8529771AA476C1008ED393 /* save@2x.png in Resources */,
+				1D8215FB1AAED7E800D02D97 /* audio in Resources */,
 				1D8529781AA476C1008ED393 /* ToolViewInputText@2x.png in Resources */,
 				1D85297C1AA476C1008ED393 /* umeng_fb_audio_dialog_cancel@2x.png in Resources */,
 				1D886D161AA5568A00008028 /* Localizable.strings in Resources */,

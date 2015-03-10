@@ -15,8 +15,12 @@
 #import "DBHelper.h"
 #import "GameStateModel.h"
 #import "UMSocial.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface GameViewController ()
+
+@property(nonatomic,strong)AVAudioPlayer *movePlayer ;
+@property(nonatomic,strong)AVAudioPlayer *successPlayer ;
 
 @end
 
@@ -52,6 +56,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)initPlayer
+{
+    NSURL *moveMP3=[NSURL URLWithString:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"audio/move.mp3"]];
+    NSError *err=nil;
+    _movePlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:moveMP3 error:&err];
+    _movePlayer.volume=1.0;
+    [_movePlayer prepareToPlay];
+    if (err!=nil) {
+        NSLog(@"move player init error:%@",err);
+    }
 }
 
 /**
@@ -109,6 +125,8 @@
     
     _gameLevel=[DBHelper loadGameLevel];
     _stepsCount=0;
+    
+    [self initPlayer];
 }
 
 /**
@@ -197,6 +215,8 @@
  */
 -(void)splitBtnAction:(UIButton *)sender
 {
+    [_movePlayer play];
+    
     if (kGameNormal==_gameState||kGameReset==_gameState) {
         //开始游戏
         [self _outOfOrderInit];
@@ -247,14 +267,12 @@
         //判断是否游戏胜利
         if ([self isSuccess])
         {
-//            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ok" message:@"shengli" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
-//            [alert show];
             UIView *infoView=[[UIView alloc] init];
             [infoView setBackgroundColor:color(255, 255, 255, 0.5)];
             infoView.frame=_gameView.bounds;
             [_gameView addSubview:infoView];
             
-            UILabel *successLbl=[[UILabel alloc] initWithFrame:CGRectMake(0, 80, infoView.frame.size.width, 80)];
+            UILabel *successLbl=[[UILabel alloc] initWithFrame:CGRectMake(0, 80, 0, 0)];
             [successLbl setText:@"Success😊"];
             [successLbl setTextAlignment:NSTextAlignmentCenter];
             [successLbl setFont:[UIFont fontWithName:@"AmericanTypewriter" size:48.0]];
@@ -265,18 +283,37 @@
             [shareBtn setTitle:NSLocalizedString(@"challengeFriend", nil) forState:UIControlStateNormal];
             [shareBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             [shareBtn.titleLabel setFont:[UIFont systemFontOfSize:26.0]];
+            [shareBtn setHidden:YES];
             [infoView addSubview:shareBtn];
             
             [shareBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
             NSDictionary *shareBtnViews=NSDictionaryOfVariableBindings(infoView,shareBtn);
-            [infoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[shareBtn(120)]" options:0 metrics:0 views:shareBtnViews]];
+            [infoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[shareBtn(200)]" options:0 metrics:0 views:shareBtnViews]];
             [infoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[shareBtn(60)]-60-|" options:0 metrics:0 views:shareBtnViews]];
             [infoView addConstraint:[NSLayoutConstraint constraintWithItem:shareBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:infoView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
             
             [shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
             
+            [UIView animateWithDuration:0.8 animations:^{
+                successLbl.frame=CGRectMake(0, 80, infoView.frame.size.width, 80);
+                
+            } completion:^(BOOL finished) {
+                [shareBtn setHidden:NO];
+            }];
+            
+            //播放success音频
+            [self playSuccessAudio];
         }
     }
+}
+
+-(void)playSuccessAudio
+{
+    NSURL *url=[NSURL URLWithString:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"audio/success.mp3"]];
+    _successPlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    _successPlayer.volume=1.0;
+    [_successPlayer prepareToPlay];
+    [_successPlayer play];
 }
 
 /**
