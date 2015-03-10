@@ -34,6 +34,7 @@
     [super viewDidLoad];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.navigationItem.title=NSLocalizedString(@"browser", nil);
     
     NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://image.baidu.com/i?tn=wiseala&ie=utf8&word=%E6%89%8B%E6%9C%BA%E5%A3%81%E7%BA%B8&fmpage=index&from=index&pos=magic"]];
     [self.picWebView loadRequest:request];
