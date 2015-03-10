@@ -333,8 +333,9 @@
  */
 -(BOOL)_isValidMove:(NSInteger)tag
 {
-    return (_blankNum-1==tag || _blankNum+1==tag ||
-    _blankNum-3==tag || _blankNum+3==tag);
+    return ( ((int)ceil(_blankNum/3.0)==(int)ceil(tag/3.0) && ( _blankNum-1==tag || _blankNum+1==tag))
+            || _blankNum-3==tag
+            || _blankNum+3==tag);
 }
 
 /**
