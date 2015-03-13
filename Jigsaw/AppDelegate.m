@@ -15,7 +15,10 @@
 #import "UMOpus.h"
 #import "UMSocialQQHandler.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 @implementation AppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

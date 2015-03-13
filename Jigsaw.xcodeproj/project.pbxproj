@@ -91,6 +91,7 @@
 		1D8F19431A9F099D00524402 /* PicManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F19411A9F099D00524402 /* PicManagerViewController.m */; };
 		1D8F19441A9F099D00524402 /* PicManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D8F19421A9F099D00524402 /* PicManagerViewController.xib */; };
 		1D8F19471A9F2DD600524402 /* PicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F19461A9F2DD600524402 /* PicCollectionViewCell.m */; };
+		1D9CE7FB1AB2B7CF00B971A9 /* UIView+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9CE7FA1AB2B7CF00B971A9 /* UIView+Ext.m */; };
 		1DC533F41A839D8800F2D416 /* GameStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC533F31A839D8800F2D416 /* GameStateModel.m */; };
 /* End PBXBuildFile section */
 
@@ -243,6 +244,8 @@
 		1D8F19421A9F099D00524402 /* PicManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicManagerViewController.xib; sourceTree = "<group>"; };
 		1D8F19451A9F2DD600524402 /* PicCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicCollectionViewCell.h; sourceTree = "<group>"; };
 		1D8F19461A9F2DD600524402 /* PicCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicCollectionViewCell.m; sourceTree = "<group>"; };
+		1D9CE7F91AB2B7CF00B971A9 /* UIView+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Ext.h"; sourceTree = "<group>"; };
+		1D9CE7FA1AB2B7CF00B971A9 /* UIView+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Ext.m"; sourceTree = "<group>"; };
 		1DC533F21A839D8800F2D416 /* GameStateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStateModel.h; sourceTree = "<group>"; };
 		1DC533F31A839D8800F2D416 /* GameStateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStateModel.m; sourceTree = "<group>"; };
 		9235D4BB5A0612DF98723B17 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -423,6 +426,8 @@
 		1D17EEB61A7CD75A00C3D8C7 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				1D9CE7F91AB2B7CF00B971A9 /* UIView+Ext.h */,
+				1D9CE7FA1AB2B7CF00B971A9 /* UIView+Ext.m */,
 				1D80D2961AA173E80053546F /* UIImage+Alpha.h */,
 				1D80D2971AA173E80053546F /* UIImage+Alpha.m */,
 				1D80D2981AA173E80053546F /* UIImage+Cut.h */,
@@ -842,6 +847,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D17EEC71A7CD8B900C3D8C7 /* GameViewController.m in Sources */,
+				1D9CE7FB1AB2B7CF00B971A9 /* UIView+Ext.m in Sources */,
 				1DC533F41A839D8800F2D416 /* GameStateModel.m in Sources */,
 				1D17EE951A7CD6E300C3D8C7 /* AppDelegate.m in Sources */,
 				1D11EDDB1A7F8E6800425575 /* GameView.m in Sources */,

@@ -11,9 +11,9 @@
 "pictureManage"="Manage Picture";
 "share"="Share";
 "feedback"="Feedback";
-"checkUpdate"="Update Version";
+"checkUpdate"="Current Version";
 "donateAuthor"="Donate";
-"currentVersion"="Version:1.0.0";
+"currentVersion"="v:1.0.0";
 "easyMode"="Easy Mode";
 "mediumMode"="Medium Mode";
 "hardMode"="Hard Mode";

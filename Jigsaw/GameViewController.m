@@ -16,11 +16,13 @@
 #import "GameStateModel.h"
 #import "UMSocial.h"
 #import <AVFoundation/AVFoundation.h>
+#import "UIView+Ext.h"
 
 @interface GameViewController ()
 
 @property(nonatomic,strong)AVAudioPlayer *movePlayer ;
 @property(nonatomic,strong)AVAudioPlayer *successPlayer ;
+@property(nonatomic,assign)BOOL isPlayAudio;
 
 @end
 
@@ -35,6 +37,7 @@
     return self;
 }
 
+#pragma mark - view lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,24 +61,14 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)initPlayer
-{
-    NSURL *moveMP3=[NSURL URLWithString:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"audio/move.mp3"]];
-    NSError *err=nil;
-    _movePlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:moveMP3 error:&err];
-    _movePlayer.volume=1.0;
-    [_movePlayer prepareToPlay];
-    if (err!=nil) {
-        NSLog(@"move player init error:%@",err);
-    }
-}
-
+#pragma mark - Actions
 /**
  *  初始化页面数据
  */
 -(void)initView
 {
     _gameState=kGameNormal;
+    _isPlayAudio=YES;
     
     [self.view setBackgroundColor:color(232, 232, 232, 1)];
     
@@ -94,7 +87,7 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:backBtn attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
     
     _stepsLbl=[[UILabel alloc] init];
-    [_stepsLbl setText:@"点击图片开始游戏..."];
+    [_stepsLbl setText:NSLocalizedString(@"startGame", nil)];
     [_stepsLbl setTextColor:color(195, 116, 65, 1)];
     [_stepsLbl setFont:[UIFont systemFontOfSize:22]];
     [_stepsLbl setTextAlignment:NSTextAlignmentCenter];
@@ -103,6 +96,16 @@
     NSDictionary *viewsLabel=NSDictionaryOfVariableBindings(self.view,_stepsLbl,backBtn);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_stepsLbl]-5-|" options:0 metrics:0 views:viewsLabel]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[backBtn]-20-[_stepsLbl(20)]" options:0 metrics:0 views:viewsLabel]];
+    
+    UIButton *audioBtn=[[UIButton alloc] init];
+    [audioBtn setTitle:@"Audio" forState:UIControlStateNormal];
+    [audioBtn setBackgroundColor:[UIColor yellowColor]];
+    [audioBtn addTarget:self action:@selector(playAudioAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:audioBtn];
+    [audioBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
+    NSDictionary *viewsAudio=NSDictionaryOfVariableBindings(self.view,audioBtn,backBtn);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[audioBtn(30)]-5-|" options:0 metrics:0 views:viewsAudio]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[backBtn]-15-[audioBtn(30)]" options:0 metrics:0 views:viewsAudio]];
     
     _gameView=[[GameView alloc] init];
     _gameView.picName=self.picName;
@@ -128,6 +131,33 @@
     
     [self initPlayer];
 }
+
+-(void)initPlayer
+{
+    NSURL *moveMP3=[NSURL fileURLWithPath:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"audio/move.mp3"]];
+    NSError *err=nil;
+    self.movePlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:moveMP3 error:&err];
+    self.movePlayer.volume=1.0;
+    [self.movePlayer prepareToPlay];
+    if (err!=nil) {
+        NSLog(@"move player init error:%@",err);
+    }
+}
+
+-(void)playSuccessAudio
+{
+    NSURL *url=[NSURL fileURLWithPath:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"audio/success.mp3"]];
+    _successPlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    _successPlayer.volume=1.0;
+    [_successPlayer prepareToPlay];
+    [_successPlayer play];
+}
+
+-(void)playAudioAction:(UIButton *)sender
+{
+    _isPlayAudio=!_isPlayAudio;
+}
+
 
 /**
  *  工厂方法：创建工具栏按钮
@@ -215,7 +245,9 @@
  */
 -(void)splitBtnAction:(UIButton *)sender
 {
-    [_movePlayer play];
+    if (_isPlayAudio) {
+        [self.movePlayer play];
+    }
     
     if (kGameNormal==_gameState||kGameReset==_gameState) {
         //开始游戏
@@ -305,15 +337,6 @@
             [self playSuccessAudio];
         }
     }
-}
-
--(void)playSuccessAudio
-{
-    NSURL *url=[NSURL URLWithString:[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"audio/success.mp3"]];
-    _successPlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-    _successPlayer.volume=1.0;
-    [_successPlayer prepareToPlay];
-    [_successPlayer play];
 }
 
 /**
