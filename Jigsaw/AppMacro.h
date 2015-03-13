@@ -21,6 +21,8 @@
 #define UMengAppkey @"54f40a10fd98c551d7000b42"
 #define WXAppID @"wxf5604b29b75ab8e9"
 #define WXAppSecret @"3eebe428ecc99b4f9ac749be215bce16"
+#define QQAppID @"1104335713"
+#define QQAppSecret @"SF0qOIMAQqXHKsqy"
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height

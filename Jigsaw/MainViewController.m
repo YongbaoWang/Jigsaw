@@ -126,11 +126,13 @@
     [picStyleBtn setImage:[UIImage imageNamed:@"style"] forState:UIControlStateNormal] ;
     [picStyleBtn setContentMode:UIViewContentModeScaleAspectFit];
     [_toolBg addSubview:picStyleBtn];
+    
     [picStyleBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
     NSDictionary *picStyleDic=NSDictionaryOfVariableBindings(_toolBg,picStyleBtn);
     [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[picStyleBtn(40)]-8-|" options:0 metrics:0 views:picStyleDic]];
     [_toolBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[picStyleBtn(40)]-2-|" options:0 metrics:0 views:picStyleDic]];
     [picStyleBtn addTarget:self action:@selector(changePicBrowseStyle) forControlEvents:UIControlEventTouchUpInside];
+    
     
     _picCarousel.delegate=self;
     _picCarousel.dataSource=self;

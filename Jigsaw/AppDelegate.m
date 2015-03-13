@@ -13,6 +13,7 @@
 #import "UMSocialWechatHandler.h"
 #import "UMFeedback.h"
 #import "UMOpus.h"
+#import "UMSocialQQHandler.h"
 
 @implementation AppDelegate
 
@@ -30,6 +31,7 @@
     [UMFeedback setAppkey:UMengAppkey];
     //设置微信AppId、appSecret，分享url
     [UMSocialWechatHandler setWXAppId:WXAppID appSecret:WXAppSecret url:@"http://www.umeng.com/social"];
+    [UMSocialQQHandler setQQWithAppId:QQAppID appKey:QQAppSecret url:@"http://www.umeng.com/social"];
     
     [UMOpus setAudioEnable:YES];
     
