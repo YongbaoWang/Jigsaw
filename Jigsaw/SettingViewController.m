@@ -191,7 +191,7 @@
             }
             else if(indexPath.row==2) //检查更新
             {
-                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Msg" message:NSLocalizedString(@"noNewVersion", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"ok", nil), nil];
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Message" message:NSLocalizedString(@"noNewVersion", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"ok", nil), nil];
                 [alert show];
                 
             }
