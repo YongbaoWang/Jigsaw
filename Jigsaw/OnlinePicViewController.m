@@ -129,6 +129,7 @@
     [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.getElementById('topRsQuery').style.display='none';"];
     [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.getElementById('rsQuery').style.display='none';"];
     [self.picWebView stringByEvaluatingJavaScriptFromString:@"var tool=document.getElementById('infoBar');tool.parentNode.removeChild(tool);"];
+    [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.getElementById('topBar').style.display='none';"];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -144,11 +145,14 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     NSString *html= [self.picWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML;"];
-    NSLog(@"%@",html);
+    NSLog(@"html-----------%@",html);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    if (navigationType==UIWebViewNavigationTypeLinkClicked) {
+        return NO;
+    }
     [timer invalidate];
     timer=nil;
     return YES;

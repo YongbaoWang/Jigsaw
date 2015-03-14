@@ -37,7 +37,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.view setBackgroundColor:[UIColor grayColor]];
-    
+    [self.navigationItem setTitle:NSLocalizedString(@"settingView", nil)];
 }
 
 - (void)didReceiveMemoryWarning

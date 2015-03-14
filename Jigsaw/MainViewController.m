@@ -227,6 +227,7 @@
         UIImage *image=[[UIImage alloc] initWithContentsOfFile:filePath];
         ((UIImageView *)view).image=image;
         self.imageMemoryPool[key]=image;
+        
     }
     
     return view;

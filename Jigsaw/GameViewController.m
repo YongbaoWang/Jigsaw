@@ -246,7 +246,7 @@
 -(void)splitBtnAction:(UIButton *)sender
 {
     if (_isPlayAudio) {
-        [self.movePlayer play];
+        [self.movePlayer play]; 
     }
     
     if (kGameNormal==_gameState||kGameReset==_gameState) {
