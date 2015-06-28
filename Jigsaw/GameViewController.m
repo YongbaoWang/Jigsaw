@@ -99,7 +99,7 @@
     
     UIButton *audioBtn=[[UIButton alloc] init];
     [audioBtn setTitle:@"Audio" forState:UIControlStateNormal];
-    [audioBtn setBackgroundColor:[UIColor yellowColor]];
+//    [audioBtn setBackgroundColor:[UIColor yellowColor]];
     [audioBtn addTarget:self action:@selector(playAudioAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:audioBtn];
     [audioBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -234,8 +234,6 @@
         _gameState=kGameReset;
         [_stepsLbl setText:NSLocalizedString(@"startGame", nil)];
     }];
-
-    
 }
 
 /**

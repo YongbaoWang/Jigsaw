@@ -1040,7 +1040,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "Jigsaw/Jigsaw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jigsaw/UMSocial_Sdk_4.2.1",
@@ -1053,7 +1053,7 @@
 					"$(PROJECT_DIR)/Jigsaw",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b4aa68a-baf3-45e8-b131-18b3633390b2";
+				PROVISIONING_PROFILE = "6cfd4165-2836-4c8a-b095-2e3a2ec3eea9";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1079,7 +1079,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "Jigsaw/Jigsaw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jigsaw/UMSocial_Sdk_4.2.1",
@@ -1092,7 +1092,7 @@
 					"$(PROJECT_DIR)/Jigsaw",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b4aa68a-baf3-45e8-b131-18b3633390b2";
+				PROVISIONING_PROFILE = "6cfd4165-2836-4c8a-b095-2e3a2ec3eea9";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				WRAPPER_EXTENSION = app;
 			};
