@@ -60,14 +60,17 @@
         UIButton *deviceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [deviceBtn setBackgroundImage:deviceImage forState:UIControlStateNormal];
         [deviceBtn addTarget:self action:@selector(swapFrontAndBackCameras:) forControlEvents:UIControlEventTouchUpInside];
-        [deviceBtn setFrame:CGRectMake(250, 20, deviceImage.size.width, deviceImage.size.height)];
+        [deviceBtn setFrame:CGRectMake(self.view.frame.size.width - deviceImage.size.width - 20, 20, deviceImage.size.width, deviceImage.size.height)];
         
         UIView *PLCameraView=[self findView:viewController.view withName:@"PLCameraView"];
+        if (PLCameraView == nil) {
+            PLCameraView=[self findView:viewController.view withName:@"PLImagePickerCameraView"];
+        }
         [PLCameraView addSubview:deviceBtn];
         
         [self setShowsCameraControls:NO];
         
-        UIView *overlyView = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeightWithCamera - 34, 320, 44)];
+        UIView *overlyView = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeightWithCamera - 64, [UIScreen mainScreen].bounds.size.width, 44)];
         [overlyView setBackgroundColor:[UIColor clearColor]];
         
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -79,13 +82,13 @@
         
         UIImage *camerImage = [UIImage imageNamed:@"camera_shoot.png"];
         UIButton *cameraBtn = [[UIButton alloc] initWithFrame:
-                               CGRectMake(110, 5, camerImage.size.width, camerImage.size.height)];
+                               CGRectMake((self.view.frame.size.width - camerImage.size.width)/2, 5, camerImage.size.width, camerImage.size.height)];
         [cameraBtn setImage:camerImage forState:UIControlStateNormal];
         [cameraBtn addTarget:self action:@selector(takePicture) forControlEvents:UIControlEventTouchUpInside];
         [overlyView addSubview:cameraBtn];
         
         UIImage *photoImage = [UIImage imageNamed:@"camera_album.png"];
-        UIButton *photoBtn = [[UIButton alloc] initWithFrame:CGRectMake(260, 5, 70, 40)];
+        UIButton *photoBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80, 5, 70, 40)];
         [photoBtn setImage:photoImage forState:UIControlStateNormal];
         [photoBtn addTarget:self action:@selector(showPhoto) forControlEvents:UIControlEventTouchUpInside];
         [overlyView addSubview:photoBtn];
@@ -144,14 +147,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     image = [[image clipImageWithScaleWithsize:CGSizeMake(320, 400)] retain] ;
     [picker dismissViewControllerAnimated:NO completion:^{
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         [_customDelegate cameraPhoto:image];
     }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     if(_isSingle){
         [picker dismissViewControllerAnimated:YES completion:nil];
     }else{

@@ -98,8 +98,9 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[backBtn]-20-[_stepsLbl(20)]" options:0 metrics:0 views:viewsLabel]];
     
     UIButton *audioBtn=[[UIButton alloc] init];
-    [audioBtn setTitle:@"Audio" forState:UIControlStateNormal];
+//    [audioBtn setTitle:@"Audio" forState:UIControlStateNormal];
 //    [audioBtn setBackgroundColor:[UIColor yellowColor]];
+    [audioBtn setImage:[UIImage imageNamed:@"music"] forState:UIControlStateNormal];
     [audioBtn addTarget:self action:@selector(playAudioAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:audioBtn];
     [audioBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -119,11 +120,18 @@
     
     NSDictionary *gameViewDict=NSDictionaryOfVariableBindings(self.view,_gameView,_stepsLbl);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_gameView]-15-|" options:0 metrics:0 views:gameViewDict]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_stepsLbl]-20-[_gameView(290)]" options:0 metrics:0 views:gameViewDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_stepsLbl]-20-[_gameView]" options:0 metrics:0 views:gameViewDict]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_gameView
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:_gameView
+                                                          attribute:NSLayoutAttributeWidth
+                                                         multiplier:1.0
+                                                           constant:0]];
     
     NSDictionary *resetViews=NSDictionaryOfVariableBindings(self.view,_gameView,resetBtn);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[resetBtn]-15-|" options:0 metrics:0 views:resetViews]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_gameView]-20@700-[resetBtn(30)]-(>=20)-|" options:0 metrics:0 views:resetViews]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_gameView]-20@700-[resetBtn(40)]-(>=20)-|" options:0 metrics:0 views:resetViews]];
     [self.view addSubview:resetBtn];
     
     _gameLevel=[DBHelper loadGameLevel];

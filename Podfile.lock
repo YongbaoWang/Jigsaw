@@ -6,15 +6,18 @@ PODS:
     - FMDB/common
   - iCarousel (1.8.1)
   - MBProgressHUD (0.9)
+  - Reveal-iOS-SDK (1.5.1)
 
 DEPENDENCIES:
   - FMDB (~> 2.5)
   - iCarousel (~> 1.8.1)
   - MBProgressHUD (~> 0.9)
+  - Reveal-iOS-SDK
 
 SPEC CHECKSUMS:
-  FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
-  iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
-  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  iCarousel: dace1cb858e3f4dc2614bee3201041247f82feda
+  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
+  Reveal-iOS-SDK: c9c55cad2729c85f6ced415f1b21857c9a2d8ef9
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.2
