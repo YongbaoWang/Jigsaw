@@ -163,9 +163,21 @@
 
 -(void)cameraAction:(id)sender
 {
-    UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"select", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"camera", nil),NSLocalizedString(@"browser", nil), nil];
-    sheet.tag=kTagCameraBrower;
-    [sheet showInView:self.view];
+    CustomImagePickerController *picker = [[CustomImagePickerController alloc] init];
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    }else{
+        [picker setIsSingle:YES];
+        [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+    [picker setCustomDelegate:self];
+    [self presentViewController:picker animated:YES completion:nil];
+    
+    
+    
+//    UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"select", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"camera", nil),NSLocalizedString(@"browser", nil), nil];
+//    sheet.tag=kTagCameraBrower;
+//    [sheet showInView:self.view];
 }
 
 - (void)cameraPhoto:(UIImage *)image  //选择完图片
